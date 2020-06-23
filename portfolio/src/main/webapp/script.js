@@ -12,12 +12,30 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
+var slideIndex = 1;
+showSlides(slideIndex);
+
+// Next/previous controls
+function nextSlide(n) {
+  showSlides(slideIndex += n);
+}
+
+function showSlides(n) {
+  var slides = document.getElementsByClassName("slide");
+  if (n > slides.length) {slideIndex = 1}
+  if (n < 1) {slideIndex = slides.length}
+  for (var i = 0; i < slides.length; i++) {
+    slides[i].style.display = "none";
+  }
+
+  slides[slideIndex-1].style.display = "block";
+}
 /**
  * Adds a random greeting to the page.
  */
 function addRandomFact() {
   const greetings =
-      ['Troy and Abed in the mooooooorning!', 'Goodbye everyone, I\'ll remember you all in therapy.', 'First of all... How dare you?','What the fork!?'];
+      ['Troy and Abed in the mooooooorning!', 'Goodbye everyone, I\'ll remember you all in therapy.', 'First of all... How dare you?', 'What the fork!?'];
 
   // Pick a random greeting.
   const greeting = greetings[Math.floor(Math.random() * greetings.length)];
