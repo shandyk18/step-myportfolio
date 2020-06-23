@@ -2,13 +2,20 @@
 <html>
   <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Shandy Kim's Portfolio</title>
     <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
   </head>
   <body>
-    <div id="content">
-      <h1>Shandy Kim's Portfolio</h1>
-      <div id="overview">
+    <div id="content" class="container">
+      <div class="container p-3 my-3 bg-dark text-white">
+        <h1>Shandy Kim's Portfolio</h1>
+      </div>
+      <div id="overview" class="container">
         <h3>Overview</h3>
         <p>My name is Shandy Kim, and I'm a rising junior at the University of Washington (Seattle) studying computer science. I grew up in Tacoma, WA but currently live in Snoqualmie, WA.
             My talents include sleeping late for no reason (and regretting it the next morning) and playing the ukulele.</p>
@@ -17,6 +24,7 @@
             from STEP!</p>
         <a href="https://www.linkedin.com/in/shandy-kim-63242b168" target="_blank">LinkedIn</a>
         <a href="https://www.github.com/shandyk18" target="_blank">GitHub</a>
+        <br>
         <img src="images/me.jpg" alt="Picture of me" width="832" height="624">
         <p>Here are fun facts about me:</p>
         <ul>
@@ -27,7 +35,7 @@
             <li>I firmly believe there is a <em>Spongebob</em> quote for every situation</li>
         </ul>
       </div>
-      <div id="projects">
+      <div id="projects" class="container">
           <h3>Favorite Projects I Have Worked On</h3>
           <ul>
             <li><strong>xk OS:</strong> Last quarter, I took a class on operating systems. Throughout the quarter, a partner and I worked on implementing features of the barebones 
@@ -39,7 +47,7 @@
             movement for the dog. You can play it at <a href="https://www.itch.io" target="_blank">here</a>.</li>
           </ul>
       </div>
-      <div id="pet">
+      <div id="pet" class="container">
         <h3>Pet: Luci</h3>
         <p>My family has a pet dog named Luci. She's a Korean Jindo and is around 1 1/2 years old. Her favorite activities are chasing local rabbits and meeting new people.
             One great thing about her is that she rarely barks, so no need to worry about noise complaints!</p>
@@ -61,7 +69,7 @@
           <a class="next" onclick="nextSlide(1)">&#10095;</a>
         </div>
       </div>
-      <div id="pnw">
+      <div id="pnw" class="container">
         <h3>Pacific Northwest</h3>
         <p>Washington state is known for its nature scenery and its connections with serial killers (I kid you not humans remains were found at a Seattle beach a few days ago). 
             In the PNW, the ocean, forests, mountains, and even deserts are within reach. I live in western Washington, so forests and hiking trails are easy to access.
