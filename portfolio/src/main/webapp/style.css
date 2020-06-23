@@ -2,6 +2,10 @@
   margin-top: 20px;
 }
 
+.nav-link {
+    color: white;
+}
+
 .dog-image {
     width: 650px;
     height: 850px;
