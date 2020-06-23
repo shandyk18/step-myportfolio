@@ -12,7 +12,7 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-var slideIndex = 1;
+let slideIndex = 1;
 showSlides(slideIndex);
 
 // Next/previous controls
@@ -21,7 +21,7 @@ function nextSlide(n) {
 }
 
 function showSlides(n) {
-  var slides = document.getElementsByClassName("slide");
+  let slides = document.getElementsByClassName("slide");
   if (n > slides.length) {slideIndex = 1}
   if (n < 1) {slideIndex = slides.length}
   for (var i = 0; i < slides.length; i++) {
@@ -30,6 +30,7 @@ function showSlides(n) {
 
   slides[slideIndex-1].style.display = "block";
 }
+
 /**
  * Adds a random greeting to the page.
  */

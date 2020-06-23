@@ -8,6 +8,16 @@
   margin-top: 20px;
 }
 
+/* img {
+  width: 650px;
+  height: 850px;
+} */
+
+.dog-image {
+    width: 650px;
+    height: 850px;
+}
+
 /* Position the image container (needed to position the left and right arrows) */
 .container {
   position: relative;
@@ -16,7 +26,6 @@
 /* Hide the images by default */
 .slide {
   display: none;
-  width: 100%;
 }
 
 /* Next & previous buttons */
