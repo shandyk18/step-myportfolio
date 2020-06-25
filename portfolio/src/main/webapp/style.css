@@ -32,6 +32,10 @@ html, body {
     height: 850px;
 }
 
+.pnw-image {
+    padding: 8px;
+}
+
 /* Hide the images by default */
 .slide {
   display: none;
