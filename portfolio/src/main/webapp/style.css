@@ -2,7 +2,6 @@ img {
     max-width: 100%;
     max-height: 100%;
     display: block;
-    padding: 8px
 }
 
 html, body {
@@ -31,6 +30,10 @@ html, body {
 .dog-image {
     width: 650px;
     height: 850px;
+}
+
+.pnw-image {
+    padding: 8px;
 }
 
 /* Hide the images by default */
