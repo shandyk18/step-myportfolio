@@ -23,6 +23,18 @@ html, body {
     color: white;
 }
 
+.nav-link:hover {
+    color: #959595;
+}
+
+.modal-content
+{
+    display: block;
+    margin: auto;
+    max-width: 100%;
+    height: auto !important;
+}
+
 .dog-image {
     width: 650px;
     height: 850px;
