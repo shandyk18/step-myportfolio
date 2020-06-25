@@ -23,6 +23,10 @@ html, body {
     color: white;
 }
 
+.nav-link:hover {
+    color: #959595;
+}
+
 .dog-image {
     width: 650px;
     height: 850px;
