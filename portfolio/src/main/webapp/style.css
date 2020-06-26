@@ -44,7 +44,7 @@ html, body {
 }
 
 .pnw-image,
-.art-image:hover {
+.art-image {
     padding: 8px;
     opacity: 1.0;
     transition: opacity .66s ease-in-out;
