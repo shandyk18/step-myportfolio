@@ -13,6 +13,8 @@
 // limitations under the License.
 
 let slideIndex = 1;
+let factIndex = 0;
+
 showSlides(slideIndex);
 
 // Next/previous controls
@@ -20,6 +22,9 @@ function nextSlide(n) {
   showSlides(slideIndex += n);
 }
 
+/**
+ * Displays given slide for slideshow
+ */
 function showSlides(n) {
   let slides = document.getElementsByClassName("slide");
   if (n > slides.length) {slideIndex = 1}
@@ -32,16 +37,20 @@ function showSlides(n) {
 }
 
 /**
- * Adds a random greeting to the page.
+ * Traverses the array of facts and presents them in order
  */
-function addRandomFact() {
-  const greetings =
-      ['Troy and Abed in the mooooooorning!', 'Goodbye everyone, I\'ll remember you all in therapy.', 'First of all... How dare you?', 'What the fork!?'];
+function showFact() {
+    const facts = 
+      ['I am the oldest out of three kids', 'My first programming language was Python', 'My favorite game is Fallout: New Vegas', 'I hate raw tomatoes with a great passion', 
+      'I firmly believe there is a Spongebob quote for every situation'];
 
-  // Pick a random greeting.
-  const greeting = greetings[Math.floor(Math.random() * greetings.length)];
+    factIndex += 1;
 
-  // Add it to the page.
-  const greetingContainer = document.getElementById('greeting-container');
-  greetingContainer.innerText = greeting;
+    // if reached end of facts  
+    if (factIndex >= facts.length) {factIndex = 0}
+
+    const fact = facts[factIndex];
+
+    const factContainer = document.getElementById('fact-container');
+    factContainer.innerText = fact;
 }
