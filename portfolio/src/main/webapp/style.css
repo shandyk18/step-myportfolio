@@ -43,7 +43,8 @@ html, body {
     height: 850px;
 }
 
-.pnw-image {
+.pnw-image,
+.art-image {
     padding: 8px;
     opacity: 1.0;
     transition: opacity .66s ease-in-out;
@@ -51,7 +52,8 @@ html, body {
     -webkit-transition: opacity .66s ease-in-out;
 }
 
-.pnw-image:hover {
+.pnw-image:hover,
+.art-image:hover {
     opacity: 0.6;
     transition: opacity .33s ease-in-out;
     -moz-transition: opacity .33s ease-in-out;

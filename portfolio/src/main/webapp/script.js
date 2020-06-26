@@ -14,8 +14,6 @@
 
 let factIndex = -1;
 
-showSlides(slideIndex);
-
 /**
  * Traverses the array of facts and presents them in order
  */
