@@ -34,7 +34,18 @@ html, body {
 
 .pnw-image {
     padding: 8px;
+    opacity: 1.0;
+    transition: opacity .66s ease-in-out;
+    -moz-transition: opacity .66s ease-in-out;
+    -webkit-transition: opacity .66s ease-in-out;
 }
+
+.pnw-image:hover {
+    opacity: 0.6;
+    transition: opacity .33s ease-in-out;
+    -moz-transition: opacity .33s ease-in-out;
+    -webkit-transition: opacity .33s ease-in-out;
+}​
 
 /* Hide the images by default */
 .slide {
