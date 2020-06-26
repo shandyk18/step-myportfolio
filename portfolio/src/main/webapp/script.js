@@ -13,7 +13,7 @@
 // limitations under the License.
 
 let slideIndex = 1;
-let factIndex = 0;
+let factIndex = -1;
 
 showSlides(slideIndex);
 

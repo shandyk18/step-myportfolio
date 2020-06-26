@@ -27,6 +27,17 @@ html, body {
     color: #959595;
 }
 
+#next-fact {
+  background-color: #959595;
+  border: none;
+  color: white;
+  padding: 10px 27px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  outline: none;
+}
+
 .dog-image {
     width: 650px;
     height: 850px;
@@ -54,8 +65,7 @@ html, body {
 
 /* Next & previous buttons */
 .prev,
-.next,
-#next-fact {
+.next {
   cursor: pointer;
   position: absolute;
   top: 50%;

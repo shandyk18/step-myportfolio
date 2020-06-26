@@ -11,7 +11,7 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
   </head>
-  <body>
+  <body onload="showFact()">
     <div id="content" class="container-fluid">
       <div class="container-fluid p-3 my-3 bg-dark text-white">
         <nav class="navbar navbar-expand-sm bg-dark justify-content-flex-start">
@@ -55,13 +55,12 @@
                 art. I am no longer trying to pursue a career in game development, but I am exploring other areas in computer science, such as systems. I hope to learn a lot about web dev
                 from STEP!
                 </p>
-                <br>
-                <div class="container">
-                  <p>Here are fun facts about me:</p>
+                <p>Here are fun facts about me:</p>
+                <div class="container-fluid">
                   <div class="container" id="fact-container">
-                    <p>I am the oldest out of three kids</p>
                   </div>
-                  <a class="next-fact" onclick="showFact()">next</a>
+                  <br>
+                  <button id="next-fact" onclick="showFact()">next</button>
                 </div>
             </div>
             <br>
