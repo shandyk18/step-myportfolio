@@ -17,6 +17,7 @@ let factIndex = -1;
 function onLoad() {
     showFact();
     getMessages();
+    getCommentHistory();
 }
 
 /**
@@ -38,12 +39,33 @@ function showFact() {
     factContainer.innerText = fact;
 }
 
-
+/**
+ * Fetches 'The Office' quotes
+ */
 async function getMessages() {
     const response = await fetch('data');
     const messages = await response.json();
-
     const messageContainer = document.getElementById('message-container');
     
     messageContainer.innerText = messages.join('\n');
+}
+
+/**
+ * Fetches the current history of the comment section
+ */
+function getCommentHistory() {
+  fetch('/comments').then(response => response.json()).then((comments) => {
+    // Build the list of history entries.
+    const history = document.getElementById('history');
+    comments.history.forEach((line) => {
+      history.appendChild(createListElement(line));
+    });
+  });
+}
+
+/** Creates an <li> element containing text. */
+function createListElement(text) {
+  const liElement = document.createElement('li');
+  liElement.innerText = text;
+  return liElement;
 }
