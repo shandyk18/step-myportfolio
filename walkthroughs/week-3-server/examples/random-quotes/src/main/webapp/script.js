@@ -71,3 +71,9 @@ async function getRandomQuoteUsingAsyncAwait() {
   const quote = await response.text();
   document.getElementById('quote-container').innerText = quote;
 }
+
+async function getMessage() {
+    const response = await fetch('/data');
+    const message = await response.text();
+    document.getElementById('quote-container').innerText = message;
+}
