@@ -15,7 +15,8 @@
 package com.google.sps.servlets;
 
 import java.io.IOException;
-import java.util.*;
+import java.util.List;
+import java.util.ArrayList;
 import com.google.gson.Gson;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -45,13 +46,11 @@ public class DataServlet extends HttpServlet {
   }
 
   /**
-   * Converts a ServerStats instance into a JSON string using the Gson library. Note: We first added
-   * the Gson library dependency to pom.xml.
+   * Converts a List instance into a JSON string using the Gson library.
   */
   private String convertToJsonUsingGson(List list) {
     Gson gson = new Gson();
-    String json = gson.toJson(list);
-    return json;
+    return gson.toJson(list);
   }
 }
 
