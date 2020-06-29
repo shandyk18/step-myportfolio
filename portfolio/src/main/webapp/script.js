@@ -14,6 +14,11 @@
 
 let factIndex = -1;
 
+function onLoad() {
+    showFact();
+    getMessages();
+}
+
 /**
  * Traverses the array of facts and presents them in order
  */
@@ -31,4 +36,14 @@ function showFact() {
 
     const factContainer = document.getElementById('fact-container');
     factContainer.innerText = fact;
+}
+
+
+async function getMessages() {
+    const response = await fetch('data');
+    const messages = await response.json();
+
+    const messageContainer = document.getElementById('message-container');
+    
+    messageContainer.innerText = messages.join('\n');
 }
