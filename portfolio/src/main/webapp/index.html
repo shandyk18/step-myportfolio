@@ -11,7 +11,7 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
   </head>
-  <body onload="showFact()">
+  <body onload="showFact(); getMessages();">
     <div id="content" class="container-fluid">
       <div class="container-fluid p-3 my-3 bg-dark text-white">
         <nav class="navbar navbar-expand-sm bg-dark justify-content-flex-start">
@@ -65,6 +65,11 @@
                   </div>
                   <br>
                   <button id="next-fact" onclick="showFact()">next</button>
+                </div>
+                <br>
+                <div class="container-fluid">
+                    <div id="message-container">
+                    </div>
                 </div>
             </div>
             <br>

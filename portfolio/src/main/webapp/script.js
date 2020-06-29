@@ -32,3 +32,15 @@ function showFact() {
     const factContainer = document.getElementById('fact-container');
     factContainer.innerText = fact;
 }
+
+
+async function getMessages() {
+    console.log("Getting the messages...");
+
+    const response = await fetch('data');
+    const messages = await response.json();
+
+    const messageContainer = document.getElementById('message-container');
+    
+    messageContainer.innerText = messages[0] + "\n" + messages[1] + "\n" + messages[2];
+}
