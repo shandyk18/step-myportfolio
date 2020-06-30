@@ -29,7 +29,8 @@ import com.google.sps.data.Comments;
 @WebServlet("/comments")
 public class CommentsServlet extends HttpServlet {
 
-  private Comments commentHistory = new Comments();
+  private List<String> commentHistory = new ArrayList<>();
+  //private Comments commentHistory = new Comments();
 
   @Override
   public void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException {
@@ -42,17 +43,10 @@ public class CommentsServlet extends HttpServlet {
   public void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException {
     // Get the input from the form.
     String newComment = request.getParameter("comment-input");
-    commentHistory.addComment(newComment);
+    commentHistory.add(newComment);
+    //commentHistory.addComment(newComment);
 
     // Redirect back to the HTML page.
     response.sendRedirect("/index.html");
-  }
-
-  /**
-   * Converts a List instance into a JSON string using the Gson library.
-   */
-  private String convertToJsonUsingGson(List list) {
-    Gson gson = new Gson();
-    return gson.toJson(list);
   }
 }
