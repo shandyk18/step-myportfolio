@@ -57,7 +57,6 @@ function getCommentHistory() {
   fetch('/comments').then(response => response.json()).then((comments) => {
     // Build the list of history entries.
     const history = document.getElementById('history');
-    console.log("listing a comment...");
     comments.forEach((line) => {
       history.appendChild(createListElement(line));
     });
