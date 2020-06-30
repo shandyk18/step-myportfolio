@@ -25,16 +25,30 @@ import javax.servlet.http.HttpServletResponse;
 import com.google.appengine.api.datastore.DatastoreService;
 import com.google.appengine.api.datastore.DatastoreServiceFactory;
 import com.google.appengine.api.datastore.Entity;
+import com.google.appengine.api.datastore.PreparedQuery;
+import com.google.appengine.api.datastore.Query;
+import com.google.appengine.api.datastore.Query.SortDirection;
 
 /** Servlet that returns comments on index.html.*/
 @WebServlet("/comments")
 public class CommentsServlet extends HttpServlet {
 
-  private List<String> commentHistory = new ArrayList<>();
   private DatastoreService datastore = DatastoreServiceFactory.getDatastoreService();
   
   @Override
   public void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException {
+    Query query = new Query("Task");
+
+    DatastoreService datastore = DatastoreServiceFactory.getDatastoreService();
+    PreparedQuery results = datastore.prepare(query);
+    
+    List<String> commentHistory = new ArrayList<>();
+    for (Entity entity : results.asIterable()) {
+      String comment = (String) entity.getProperty("comment");
+
+      commentHistory.add(comment);
+    }
+
     response.setContentType("application/json");
     String json = new Gson().toJson(commentHistory);
     response.getWriter().println(json);
@@ -44,7 +58,11 @@ public class CommentsServlet extends HttpServlet {
   public void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException {
     // Get the input from the form.
     String newComment = request.getParameter("comment-input");
-    commentHistory.add(newComment);
+
+    Entity taskEntity = new Entity("Task");
+    taskEntity.setProperty("comment", newComment);
+
+    datastore.put(taskEntity);
 
     Entity taskEntity = new Entity("Task");
     taskEntity.setProperty("comment", newComment);
