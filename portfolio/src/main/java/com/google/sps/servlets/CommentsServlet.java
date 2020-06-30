@@ -30,7 +30,6 @@ import com.google.sps.data.Comments;
 public class CommentsServlet extends HttpServlet {
 
   private List<String> commentHistory = new ArrayList<>();
-  //private Comments commentHistory = new Comments();
 
   @Override
   public void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException {
@@ -44,7 +43,6 @@ public class CommentsServlet extends HttpServlet {
     // Get the input from the form.
     String newComment = request.getParameter("comment-input");
     commentHistory.add(newComment);
-    //commentHistory.addComment(newComment);
 
     // Redirect back to the HTML page.
     response.sendRedirect("/index.html");
