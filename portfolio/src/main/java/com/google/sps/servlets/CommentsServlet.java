@@ -64,6 +64,11 @@ public class CommentsServlet extends HttpServlet {
 
     datastore.put(taskEntity);
 
+    Entity taskEntity = new Entity("Task");
+    taskEntity.setProperty("comment", newComment);
+
+    datastore.put(taskEntity);
+
     // Redirect back to the HTML page.
     response.sendRedirect("/index.html");
   }
