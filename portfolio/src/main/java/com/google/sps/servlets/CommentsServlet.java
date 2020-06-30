@@ -34,19 +34,26 @@ import com.google.appengine.api.datastore.Query.SortDirection;
 public class CommentsServlet extends HttpServlet {
 
   private DatastoreService datastore = DatastoreServiceFactory.getDatastoreService();
-  
+
   @Override
   public void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException {
     Query query = new Query("Task");
 
     DatastoreService datastore = DatastoreServiceFactory.getDatastoreService();
     PreparedQuery results = datastore.prepare(query);
-    
+
+    int maxComments = 2;//Integer.parseInt(request.getParameter("max-num"));
+    int counter = 0;
+
     List<String> commentHistory = new ArrayList<>();
     for (Entity entity : results.asIterable()) {
-      String comment = (String) entity.getProperty("comment");
+      if (counter == maxComments) {
+          break;
+      }
 
+      String comment = (String) entity.getProperty("comment");
       commentHistory.add(comment);
+      counter++;
     }
 
     response.setContentType("application/json");
@@ -58,8 +65,10 @@ public class CommentsServlet extends HttpServlet {
   public void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException {
     // Get the input from the form.
     String newComment = request.getParameter("comment-input");
+    long timestamp = System.currentTimeMillis();
 
     Entity taskEntity = new Entity("Task");
+    taskEntity.setProperty("timestamp", timestamp);
     taskEntity.setProperty("comment", newComment);
 
     datastore.put(taskEntity);
