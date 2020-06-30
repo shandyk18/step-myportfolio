@@ -22,15 +22,17 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-
-import com.google.sps.data.Comments;
+import com.google.appengine.api.datastore.DatastoreService;
+import com.google.appengine.api.datastore.DatastoreServiceFactory;
+import com.google.appengine.api.datastore.Entity;
 
 /** Servlet that returns comments on index.html.*/
 @WebServlet("/comments")
 public class CommentsServlet extends HttpServlet {
 
   private List<String> commentHistory = new ArrayList<>();
-
+  private DatastoreService datastore = DatastoreServiceFactory.getDatastoreService();
+  
   @Override
   public void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException {
     response.setContentType("application/json");
@@ -43,6 +45,11 @@ public class CommentsServlet extends HttpServlet {
     // Get the input from the form.
     String newComment = request.getParameter("comment-input");
     commentHistory.add(newComment);
+
+    Entity taskEntity = new Entity("Task");
+    taskEntity.setProperty("comment", newComment);
+
+    datastore.put(taskEntity);
 
     // Redirect back to the HTML page.
     response.sendRedirect("/index.html");
