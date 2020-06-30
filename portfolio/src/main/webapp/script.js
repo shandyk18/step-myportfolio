@@ -56,7 +56,6 @@ async function getMessages() {
 function getCommentHistory() {
   fetch('/comments').then(response => response.json()).then((comments) => {
     // Build the list of history entries.
-    console.log(comments);
     const history = document.getElementById('history');
     comments.forEach((line) => {
       history.appendChild(createListElement(line));
