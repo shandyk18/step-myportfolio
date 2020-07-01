@@ -8,6 +8,10 @@ html, body {
   height: 100%;
 }
 
+textarea {
+    width: 100%;
+}
+
 .container-fluid, .container {
   position: relative;
   font-family: 'Maven Pro', sans-serif;
@@ -27,7 +31,7 @@ html, body {
     color: #959595;
 }
 
-#next-fact {
+.button {
   background-color: #959595;
   border: none;
   color: white;
@@ -36,6 +40,10 @@ html, body {
   text-decoration: none;
   display: inline-block;
   outline: none;
+}
+
+#delete-button {
+  float: right;
 }
 
 .dog-image {
