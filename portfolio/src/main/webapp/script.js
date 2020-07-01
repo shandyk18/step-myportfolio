@@ -83,3 +83,11 @@ function refreshComments(num) {
     });
   });
 }
+
+/**
+ * Use POST request with fetch to delete all comments
+ */
+function deleteComments() {
+    const request = new Request('/delete-data', {method: 'POST'});
+    fetch(request).then(response => response.json()).then(refreshComments(0));
+}

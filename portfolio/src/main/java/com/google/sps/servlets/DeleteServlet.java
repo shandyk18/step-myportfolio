@@ -27,51 +27,25 @@ import com.google.appengine.api.datastore.DatastoreServiceFactory;
 import com.google.appengine.api.datastore.Entity;
 import com.google.appengine.api.datastore.PreparedQuery;
 import com.google.appengine.api.datastore.Query;
-import com.google.appengine.api.datastore.Query.SortDirection;
 
-/** Servlet that returns comments on index.html.*/
-@WebServlet("/comments")
-public class CommentsServlet extends HttpServlet {
+/** Servlet that returns some example content. TODO: modify this file to handle comments data */
+@WebServlet("/delete-data")
+public class DeleteServlet extends HttpServlet {
 
   private DatastoreService datastore = DatastoreServiceFactory.getDatastoreService();
 
   @Override
   public void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException {
-    Query query = new Query("Task").addSort("timestamp", SortDirection.DESCENDING);
-    PreparedQuery results = datastore.prepare(query);
-
-    String maxString = request.getParameter("max-comments");
-    // on default, show 5 comments
-    int maxComments = maxString == null ? 5 : Integer.parseInt(maxString);
-    int counter = 0;
-
-    List<String> commentHistory = new ArrayList<>();
-    for (Entity entity : results.asIterable()) {
-      if (counter == maxComments) {
-          break;
-      }
-
-      String comment = (String) entity.getProperty("comment");
-      commentHistory.add(comment);
-      counter++;
-    }
-
-    response.setContentType("application/json");
-    String json = new Gson().toJson(commentHistory);
-    response.getWriter().println(json);
   }
 
   @Override
   public void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException {
-    // Get the input from the form.
-    String newComment = request.getParameter("comment-input");
-    long timestamp = System.currentTimeMillis();
+    Query query = new Query("Task");
+    PreparedQuery results = datastore.prepare(query);
 
-    Entity taskEntity = new Entity("Task");
-    taskEntity.setProperty("timestamp", timestamp);
-    taskEntity.setProperty("comment", newComment);
-
-    datastore.put(taskEntity);
+    for (Entity entity : results.asIterable()) {
+      datastore.delete(entity.getKey());
+    }
 
     // Redirect back to the HTML page.
     response.sendRedirect("/index.html");
