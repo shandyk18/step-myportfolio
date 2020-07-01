@@ -83,3 +83,7 @@ function refreshComments(num) {
     });
   });
 }
+
+function deleteComments() {
+
+}

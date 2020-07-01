@@ -38,8 +38,6 @@ public class CommentsServlet extends HttpServlet {
   @Override
   public void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException {
     Query query = new Query("Task").addSort("timestamp", SortDirection.DESCENDING);
-
-    DatastoreService datastore = DatastoreServiceFactory.getDatastoreService();
     PreparedQuery results = datastore.prepare(query);
 
     String maxString = request.getParameter("max-comments");
