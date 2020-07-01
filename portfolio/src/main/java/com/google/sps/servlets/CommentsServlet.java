@@ -77,9 +77,3 @@ public class CommentsServlet extends HttpServlet {
     response.sendRedirect("/index.html");
   }
 }
-
-
-
- 
-
- 
