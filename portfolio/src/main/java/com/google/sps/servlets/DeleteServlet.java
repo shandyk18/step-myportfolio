@@ -35,6 +35,10 @@ public class DeleteServlet extends HttpServlet {
   private DatastoreService datastore = DatastoreServiceFactory.getDatastoreService();
 
   @Override
+  public void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException {
+  }
+
+  @Override
   public void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException {
     Query query = new Query("Task");
     PreparedQuery results = datastore.prepare(query);
@@ -45,13 +49,5 @@ public class DeleteServlet extends HttpServlet {
 
     // Redirect back to the HTML page.
     response.sendRedirect("/index.html");
-  }
-
-  /**
-   * Converts a List instance into a JSON string using the Gson library.
-  */
-  private String convertToJsonUsingGson(List list) {
-    Gson gson = new Gson();
-    return gson.toJson(list);
   }
 }
