@@ -56,16 +56,16 @@ function getCommentHistory() {
   fetch('/comments').then(response => response.json()).then((comments) => {
     // Build the list of history entries.
     const history = document.getElementById('history');
-    comments.forEach((line) => {
-      history.appendChild(createCommentElement(line));
-    });
+    for (const [key, value] of Object.entries(comments)) {
+      history.appendChild(createCommentElement(key, value));
+    }
   });
 }
 
 /** Creates an <p> element containing text. */
-function createCommentElement(text) {
+function createCommentElement(name, text) {
   const liElement = document.createElement('p');
-  liElement.innerText = text;
+  liElement.innerText = name + "\n" + text;
   return liElement;
 }
 
@@ -78,9 +78,9 @@ function refreshComments(num) {
   fetch('/comments?max-comments=' + num).then(response => response.json()).then((comments) => {
     // Build the list of history entries.
     const history = document.getElementById('history');
-    comments.forEach((line) => {
-      history.appendChild(createListElement(line));
-    });
+    for (const [key, value] of Object.entries(comments)) {
+      history.appendChild(createCommentElement(key, value));
+    }
   });
 }
 

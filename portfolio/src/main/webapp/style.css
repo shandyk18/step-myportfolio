@@ -8,8 +8,12 @@ html, body {
   height: 100%;
 }
 
-textarea {
-    width: 100%;
+#text-name {
+  width: 25%;
+}
+
+#text-comment {
+  width: 100%
 }
 
 .container-fluid, .container {
@@ -40,10 +44,6 @@ textarea {
   text-decoration: none;
   display: inline-block;
   outline: none;
-}
-
-#delete-button {
-  float: right;
 }
 
 .dog-image {

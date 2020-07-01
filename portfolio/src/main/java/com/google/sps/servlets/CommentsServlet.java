@@ -17,6 +17,8 @@ package com.google.sps.servlets;
 import java.io.IOException;
 import java.util.List;
 import java.util.ArrayList;
+import java.util.Map;
+import java.util.LinkedHashMap;
 import com.google.gson.Gson;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -45,14 +47,16 @@ public class CommentsServlet extends HttpServlet {
     int maxComments = maxString == null ? 5 : Integer.parseInt(maxString);
     int counter = 0;
 
-    List<String> commentHistory = new ArrayList<>();
+    Map<String, String> commentHistory = new LinkedHashMap<>();
+    //List<String> commentHistory = new ArrayList<>();
     for (Entity entity : results.asIterable()) {
       if (counter == maxComments) {
           break;
       }
 
+      String name = (String) entity.getProperty("name");
       String comment = (String) entity.getProperty("comment");
-      commentHistory.add(comment);
+      commentHistory.put(name, comment);
       counter++;
     }
 
@@ -64,11 +68,13 @@ public class CommentsServlet extends HttpServlet {
   @Override
   public void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException {
     // Get the input from the form.
+    String newName = request.getParameter("name-input");
     String newComment = request.getParameter("comment-input");
     long timestamp = System.currentTimeMillis();
 
     Entity taskEntity = new Entity("Task");
     taskEntity.setProperty("timestamp", timestamp);
+    taskEntity.setProperty("name", newName);
     taskEntity.setProperty("comment", newComment);
 
     datastore.put(taskEntity);
