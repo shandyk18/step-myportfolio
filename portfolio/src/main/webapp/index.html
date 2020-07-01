@@ -75,20 +75,22 @@
             <br><br>
           </div>
           <div class="container">
-            <label for="max-comments">Number of Comments: </label>
-            <select onchange="refreshComments(this.value)" name="max-comments" id="max-comments">
-              <option value=""></option>
-              <option value="1">1</option>
-              <option value="5">5</option>
-              <option value="10">10</option>
-              <option value="20">20</option>
-            </select>
-            <form action="/comments" method="POST">
-              <textarea name="comment-input"></textarea>
-              <br>
-              <input type="submit" class="button"/>
-              <button type="button" class="button" id="delete-button" onclick="deleteComments()">Delete</button>
-            </form>
+            <div class="text">
+              <label for="max-comments">Number of Comments: </label>
+              <select onchange="refreshComments(this.value)" name="max-comments" id="max-comments">
+                <option value=""></option>
+                <option value="1">1</option>
+                <option value="5">5</option>
+                <option value="10">10</option>
+                <option value="20">20</option>
+              </select>
+              <form action="/comments" method="POST">
+                <textarea name="comment-input"></textarea>
+                <br>
+                <input type="submit" class="button"/>
+                <button type="button" class="button" id="delete-button" onclick="deleteComments()">Delete</button>
+              </form>
+            </div>
             <br>
             <div id="history"></div>
           </div>
