@@ -57,14 +57,14 @@ function getCommentHistory() {
     // Build the list of history entries.
     const history = document.getElementById('history');
     comments.forEach((line) => {
-      history.appendChild(createListElement(line));
+      history.appendChild(createCommentElement(line));
     });
   });
 }
 
-/** Creates an <li> element containing text. */
-function createListElement(text) {
-  const liElement = document.createElement('li');
+/** Creates an <p> element containing text. */
+function createCommentElement(text) {
+  const liElement = document.createElement('p');
   liElement.innerText = text;
   return liElement;
 }

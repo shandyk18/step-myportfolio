@@ -64,7 +64,7 @@
                 <div class="container" id="fact-container">
                 </div>
                 <br>
-                <button id="next-fact" onclick="showFact()">next</button>
+                <button class="button" onclick="showFact()">next</button>
               </div>
             </div>
             <br>
@@ -72,24 +72,27 @@
               <img src="images/me.jpg" class="figure-img img-fluid rounded" alt="Picture of me">
               <figcaption class="figure-caption text">During my study abroad trip to Japan last summer, I visited the Itsukushima Shrine on Miyajima.</figcaption>
             </figure>
-            <br>
+            <br><br>
           </div>
           <div class="container">
-            <label for="max-comments">Number of Comments: </label>
-            <select onchange="refreshComments(this.value)" name="max-comments" id="max-comments">
-              <option value=""></option>
-              <option value="1">1</option>
-              <option value="5">5</option>
-              <option value="10">10</option>
-              <option value="20">20</option>
-            </select>
-            <form action="/comments" method="POST">
-              <textarea name="comment-input"></textarea>
-              <br>
-              <input type="submit"/>
-              <button type="button" onclick="deleteComments()">Delete</button>
-            </form>
-            <ul id="history"></ul>
+            <div class="text">
+              <label for="max-comments">Number of Comments: </label>
+              <select onchange="refreshComments(this.value)" name="max-comments" id="max-comments">
+                <option value=""></option>
+                <option value="1">1</option>
+                <option value="5">5</option>
+                <option value="10">10</option>
+                <option value="20">20</option>
+              </select>
+              <form action="/comments" method="POST">
+                <textarea name="comment-input"></textarea>
+                <br>
+                <input type="submit" class="button"/>
+                <button type="button" class="button" id="delete-button" onclick="deleteComments()">Delete</button>
+              </form>
+            </div>
+            <br>
+            <div id="history"></div>
           </div>
         </div>
       </div>
