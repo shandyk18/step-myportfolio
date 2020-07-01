@@ -57,15 +57,15 @@ function getCommentHistory() {
     // Build the list of history entries.
     const history = document.getElementById('history');
     for (const [key, value] of Object.entries(comments)) {
-      history.appendChild(createCommentElement(key, value));
+      history.appendChild(createCommentElement([key, value]));
     }
   });
 }
 
 /** Creates an <p> element containing text. */
-function createCommentElement(name, text) {
+function createCommentElement(comment) {
   const liElement = document.createElement('p');
-  liElement.innerText = name + "\n" + text;
+  liElement.innerText = comment.join('\n');
   return liElement;
 }
 
@@ -79,7 +79,7 @@ function refreshComments(num) {
     // Build the list of history entries.
     const history = document.getElementById('history');
     for (const [key, value] of Object.entries(comments)) {
-      history.appendChild(createCommentElement(key, value));
+      history.appendChild(createCommentElement([key, value]));
     }
   });
 }
