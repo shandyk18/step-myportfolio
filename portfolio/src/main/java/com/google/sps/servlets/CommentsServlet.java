@@ -37,12 +37,14 @@ public class CommentsServlet extends HttpServlet {
 
   @Override
   public void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException {
-    Query query = new Query("Task");
+    Query query = new Query("Task").addSort("timestamp", SortDirection.DESCENDING);
 
     DatastoreService datastore = DatastoreServiceFactory.getDatastoreService();
     PreparedQuery results = datastore.prepare(query);
 
-    int maxComments = 2;//Integer.parseInt(request.getParameter("max-num"));
+    String maxString = request.getParameter("max-comments");
+    // on default, show 5 comments
+    int maxComments = maxString == null ? 5 : Integer.parseInt(maxString);
     int counter = 0;
 
     List<String> commentHistory = new ArrayList<>();

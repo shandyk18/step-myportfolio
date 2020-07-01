@@ -66,9 +66,6 @@
                 <br>
                 <button id="next-fact" onclick="showFact()">next</button>
               </div>
-              <br>
-              <div class="container-fluid" id="message-container">
-              </div>
             </div>
             <br>
             <figure class="figure">
@@ -78,9 +75,15 @@
             <br>
           </div>
           <div class="container">
+            <label for="max-comments">Number of Comments: </label>
+            <select onchange="refreshComments(this.value)" name="max-comments" id="max-comments">
+              <option value=""></option>
+              <option value="1">1</option>
+              <option value="5">5</option>
+              <option value="10">10</option>
+              <option value="20">20</option>
+            </select>
             <form action="/comments" method="POST">
-              <textarea name="max-num"></textarea>
-              <br>
               <textarea name="comment-input"></textarea>
               <br>
               <input type="submit"/>

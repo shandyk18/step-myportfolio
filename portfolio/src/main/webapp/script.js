@@ -16,7 +16,6 @@ let factIndex = -1;
 
 function onLoad() {
     showFact();
-    getMessages();
     getCommentHistory();
 }
 
@@ -68,4 +67,19 @@ function createListElement(text) {
   const liElement = document.createElement('li');
   liElement.innerText = text;
   return liElement;
+}
+
+/**
+ * Fetches the current history of the comment section given number of comments to show
+ */
+function refreshComments(num) {
+  // clear previous contents
+  document.getElementById('history').innerHTML = "";
+  fetch('/comments?max-comments=' + num).then(response => response.json()).then((comments) => {
+    // Build the list of history entries.
+    const history = document.getElementById('history');
+    comments.forEach((line) => {
+      history.appendChild(createListElement(line));
+    });
+  });
 }
