@@ -60,7 +60,7 @@ public class CommentsServlet extends HttpServlet {
       if (!commentHistory.containsKey(name)) {
           commentHistory.put(name, new ArrayList<>());
       }
-      commentHistory.get(name).add(0, comment);
+      commentHistory.get(name).add(comment);
       counter++;
     }
 
