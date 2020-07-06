@@ -53,13 +53,7 @@ async function getMessages() {
  * Fetches the current history of the comment section
  */
 function getCommentHistory() {
-  fetch('/comments').then(response => response.json()).then((comments) => {
-    // Build the list of history entries.
-    const history = document.getElementById('history');
-    for (const [key, value] of Object.entries(comments)) {
-      history.appendChild(createCommentElement([key, value]));
-    }
-  });
+  refreshComments(5);
 }
 
 /** Creates an <p> element containing text. */
@@ -79,7 +73,9 @@ function refreshComments(num) {
     // Build the list of history entries.
     const history = document.getElementById('history');
     for (const [key, value] of Object.entries(comments)) {
-      history.appendChild(createCommentElement([key, value]));
+      for (const comment of value) {
+        history.appendChild(createCommentElement([key, comment]));
+      }
     }
   });
 }
