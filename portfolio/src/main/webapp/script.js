@@ -19,6 +19,18 @@ function onLoad() {
     refreshComments(5);
 }
 
+function createMap(id, name, latitude, longitude) {
+  const map = new google.maps.Map(
+    document.getElementById(id),
+      {center: {lat: latitude, lng: longitude}, zoom: 18});
+
+  const marker = new google.maps.Marker({
+    position: {lat: latitude, lng: longitude},
+    map: map,
+    title: name
+  });
+}
+
 /**
  * Traverses the array of facts and presents them in order
  */
