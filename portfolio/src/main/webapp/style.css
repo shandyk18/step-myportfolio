@@ -16,6 +16,11 @@ html, body {
   width: 100%
 }
 
+#map {
+  height: 500px;
+  width: 500px;
+}
+
 .container-fluid, .container {
   position: relative;
   font-family: 'Maven Pro', sans-serif;

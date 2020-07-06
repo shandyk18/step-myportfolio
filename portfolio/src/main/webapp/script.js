@@ -19,6 +19,12 @@ function onLoad() {
     refreshComments(5);
 }
 
+function createMap() {
+  const map = new google.maps.Map(
+    document.getElementById('map'),
+      {center: {lat: 47.500002, lng: -122.021954}, zoom: 18});
+}
+
 /**
  * Traverses the array of facts and presents them in order
  */
