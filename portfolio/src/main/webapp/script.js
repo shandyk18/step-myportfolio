@@ -16,7 +16,7 @@ let factIndex = -1;
 
 function onLoad() {
     showFact();
-    getCommentHistory();
+    refreshComments(5);
 }
 
 /**
@@ -49,23 +49,10 @@ async function getMessages() {
     messageContainer.innerText = messages.join('\n');
 }
 
-/**
- * Fetches the current history of the comment section
- */
-function getCommentHistory() {
-  fetch('/comments').then(response => response.json()).then((comments) => {
-    // Build the list of history entries.
-    const history = document.getElementById('history');
-    comments.forEach((line) => {
-      history.appendChild(createCommentElement(line));
-    });
-  });
-}
-
 /** Creates an <p> element containing text. */
-function createCommentElement(text) {
+function createCommentElement(comment) {
   const liElement = document.createElement('p');
-  liElement.innerText = text;
+  liElement.innerText = comment.join('\n');
   return liElement;
 }
 
@@ -78,9 +65,11 @@ function refreshComments(num) {
   fetch('/comments?max-comments=' + num).then(response => response.json()).then((comments) => {
     // Build the list of history entries.
     const history = document.getElementById('history');
-    comments.forEach((line) => {
-      history.appendChild(createListElement(line));
-    });
+    for (const [key, value] of Object.entries(comments)) {
+      for (const comment of value) {
+        history.appendChild(createCommentElement([key, comment]));
+      }
+    }
   });
 }
 

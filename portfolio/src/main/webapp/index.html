@@ -85,14 +85,17 @@
                 <option value="20">20</option>
               </select>
               <form action="/comments" method="POST">
-                <textarea name="comment-input"></textarea>
+                <label for="name">Name: </label>
+                <textarea name="name-input" id="text-name" rows="1"></textarea>
+                <textarea name="comment-input" id="text-comment" rows="4"></textarea>
                 <br>
                 <input type="submit" class="button"/>
-                <button type="button" class="button" id="delete-button" onclick="deleteComments()">Delete</button>
               </form>
             </div>
             <br>
             <div id="history"></div>
+            <br>
+            <button type="button" class="button" onclick="deleteComments()">Delete</button>
           </div>
         </div>
       </div>
