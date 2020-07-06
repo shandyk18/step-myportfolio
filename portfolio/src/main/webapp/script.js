@@ -22,13 +22,16 @@ function onLoad() {
 function createMap(id, name, latitude, longitude) {
   const map = new google.maps.Map(
     document.getElementById(id),
-      {center: {lat: latitude, lng: longitude}, zoom: 18});
+      {center: {lat: latitude, lng: longitude}, zoom: 18, mapTypeId: 'hybrid'});
 
   const marker = new google.maps.Marker({
     position: {lat: latitude, lng: longitude},
     map: map,
     title: name
   });
+
+  const trafficLayer = new google.maps.TrafficLayer();
+  trafficLayer.setMap(map);
 }
 
 /**
