@@ -29,6 +29,9 @@ function createMap(id, name, latitude, longitude) {
     map: map,
     title: name
   });
+
+  const trafficLayer = new google.maps.TrafficLayer();
+  trafficLayer.setMap(map);
 }
 
 /**
