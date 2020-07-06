@@ -12,7 +12,7 @@
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
     <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyA4O-GP5Yjrqr-e0WyewMgEDH_YALTuudg"></script>
   </head>
-  <body onload="createMap();">
+  <body>
     <div id="content" class="container-fluid">
       <div class="container-fluid p-3 my-3 bg-dark text-white">
         <nav class="navbar navbar-expand-sm bg-dark justify-content-flex-start">
@@ -77,7 +77,7 @@
                         <p><strong>Poo Poo Point, Issaquah</strong> - This was taken at the base of the Poo Poo 
                           Point hike. The hike got much more steeper, and going up takes around 1.5 hours.
                         </p>
-                        <div id="map"></div>
+                        <div class="map" id="ppp-map"></div>
                       </div>
                     </div>
                     <!--/.Content-->
@@ -85,7 +85,7 @@
                 </div>
                 <!--Modal: Name-->
                 <a><img class="img-fluid z-depth-1 pnw-image" src="images/poopoopoint.jpg" alt="Base of Poo Poo Point hike"
-                  data-toggle="modal" data-target="#modal1"></a>
+                  data-toggle="modal" data-target="#modal1" onclick="createMap('ppp-map', 47.500002, -122.021954);"></a>
                 <!--Modal: Name-->
                 <div class="modal fade" id="modal2" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
                   <div class="modal-dialog modal-lg" role="document">
@@ -100,6 +100,7 @@
                         <p><strong>Vancouver, CA</strong> - Over the school year, a few friends and I took a quick road trip 
                           to Vancouver and visited the Sea to Sky Gondala attraction (tickets were half off!). I froze my toes off.
                         </p>
+                        <div class="map" id="vancouver-map"></div>
                       </div>
                     </div>
                     <!--/.Content-->
@@ -107,7 +108,7 @@
                 </div>
                 <!--Modal: Name-->
                 <a><img class="img-fluid z-depth-1 pnw-image" src="images/vancouver.jpeg" alt="Vancouver, CA"
-                  data-toggle="modal" data-target="#modal2"></a>
+                  data-toggle="modal" data-target="#modal2" onclick="createMap('vancouver-map', 49.675528, -123.156984);"></a>
                 <!--Modal: Name-->
                 <div class="modal fade" id="modal9" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
                   <div class="modal-dialog modal-lg" role="document">
@@ -122,6 +123,7 @@
                         <p><strong>Top of Poo Poo Point</strong> - This was taken at the top of the Poo Poo Point hike. The black figure is 
                           one of the paragliders that jumped off this point.
                         <p>
+                        <div class="map" id="ppp2-map"></div>
                       </div>
                     </div>
                     <!--/.Content-->
@@ -129,7 +131,7 @@
                 </div>
                 <!--Modal: Name-->
                 <a><img class="img-fluid z-depth-1 pnw-image" src="images/poopoopoint2.jpg" alt="Top of Poo Poo Point"
-                  data-toggle="modal" data-target="#modal9"></a>
+                  data-toggle="modal" data-target="#modal9" onclick="createMap('ppp2-map', 47.500002, -122.021954);"></a>
               </div>
               <!-- Grid column -->
               <!-- Grid column -->
@@ -148,6 +150,7 @@
                         <p><strong>Snoqualmie Falls, Snoqualmie</strong> - Snoqualmie Falls is a popular tourist
                           destination. It's about a 10 minute drive from my home.
                         </p>
+                        <div class="map" id="falls-map"></div>
                       </div>
                     </div>
                     <!--/.Content-->
@@ -155,7 +158,7 @@
                 </div>
                 <!--Modal: Name-->
                 <a><img class="img-fluid z-depth-1 pnw-image" src="images/snoqualmie.jpg" alt="Snoqualmie Falls"
-                  data-toggle="modal" data-target="#modal6"></a>
+                  data-toggle="modal" data-target="#modal6" onclick="createMap('falls-map', 47.541815, -121.838294);"></a>
                 <!--Modal: Name-->
                 <div class="modal fade" id="modal5" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
                   <div class="modal-dialog modal-lg" role="document">
@@ -170,6 +173,7 @@
                         <p><strong>Columbia River Scenic Outlook</strong> - Eastern Washington's climate is much hotter and dryer. 
                           This photo was taken on the drive over there. Pictured is my dad and one of my siblings.
                         </p>
+                        <div class="map" id="columbia-map"></div>
                       </div>
                     </div>
                     <!--/.Content-->
@@ -177,7 +181,7 @@
                 </div>
                 <!--Modal: Name-->
                 <a><img class="img-fluid z-depth-1 pnw-image" src="images/columbia.jpg" alt="Columbia River in Eastern WA"
-                  data-toggle="modal" data-target="#modal5"></a>
+                  data-toggle="modal" data-target="#modal5" onclick="createMap('columbia-map', 46.947840, -119.964110);"></a>
                 <!--Modal: Name-->
                 <div class="modal fade" id="modal8" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
                   <div class="modal-dialog modal-lg" role="document">
@@ -192,6 +196,7 @@
                         <p><strong>Seattle Skyline</strong> - This is a picture of the downtown Seattle skyline. If you zoom in, you can 
                           see the Space Needle!
                         <p>
+                        <div class="map" id="seattle-map"></div>    
                       </div>
                     </div>
                     <!--/.Content-->
@@ -199,7 +204,7 @@
                 </div>
                 <!--Modal: Name-->
                 <a><img class="img-fluid z-depth-1 pnw-image" src="images/seattle.jpg" alt="Seattle Skyline"
-                  data-toggle="modal" data-target="#modal8"></a>
+                  data-toggle="modal" data-target="#modal8" onclick="createMap('seattle-map', 47.622003, -122.351230);"></a>
               </div>
               <!-- Grid column -->
               <!-- Grid column -->
@@ -218,6 +223,7 @@
                         <p><strong>Twin Falls, North Bend</strong> - Twin Falls is a relatively short hike with a nice
                           view of waterfalls at the top. The trail mostly follows the river pictured here.
                         </p>
+                        <div class="map" id="twin-map"></div>
                       </div>
                     </div>
                     <!--/.Content-->
@@ -225,7 +231,7 @@
                 </div>
                 <!--Modal: Name-->
                 <a><img class="img-fluid z-depth-1 pnw-image" src="images/twinfalls.jpg" alt="Twin Falls"
-                  data-toggle="modal" data-target="#modal4"></a>
+                  data-toggle="modal" data-target="#modal4" onclick="createMap('twin-map', 47.453169, -121.705030);"></a>
                 <!--Modal: Name-->
                 <div class="modal fade" id="modal3" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
                   <div class="modal-dialog modal-lg" role="document">
@@ -240,6 +246,7 @@
                         <p><strong>Cherry Blossoms, UW Seattle</strong> - My university is known for its cherry blossoms that flower every 
                           spring. There's always swarms of tourists, which can make it difficult to get to classes.
                         <p>
+                        <div class="map" id="uw-map"></div>
                       </div>
                     </div>
                     <!--/.Content-->
@@ -247,7 +254,7 @@
                 </div>
                 <!--Modal: Name-->
                 <a><img class="img-fluid z-depth-1 pnw-image" src="images/cherryblossoms.jpeg" alt="Cherry blossoms at UW"
-                  data-toggle="modal" data-target="#modal3"></a>
+                  data-toggle="modal" data-target="#modal3" onclick="createMap('uw-map', 47.658025, -122.304313);"></a>
                 <!--Modal: Name-->
                 <div class="modal fade" id="modal7" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
                   <div class="modal-dialog modal-lg" role="document">
@@ -261,6 +268,7 @@
                       <div class="modal-footer d-block d-md-flex justify-content-center">
                         <p><strong>Snoqualmie</strong> - Pictured is a snowy street in Snoqualmie.
                         <p>
+                        <div class="map" id="street-map"></div>
                       </div>
                     </div>
                     <!--/.Content-->
@@ -268,7 +276,7 @@
                 </div>
                 <!--Modal: Name-->
                 <a><img class="img-fluid z-depth-1 pnw-image" src="images/snow.jpg" alt="Snowy street"
-                  data-toggle="modal" data-target="#modal7"></a>
+                  data-toggle="modal" data-target="#modal7" onclick="createMap('street-map', 47.541761, -121.877320);"></a>
               </div>
               <!-- Grid column -->
             </div>

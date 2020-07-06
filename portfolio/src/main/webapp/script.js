@@ -19,10 +19,10 @@ function onLoad() {
     refreshComments(5);
 }
 
-function createMap() {
+function createMap(id, latitude, longitude) {
   const map = new google.maps.Map(
-    document.getElementById('map'),
-      {center: {lat: 47.500002, lng: -122.021954}, zoom: 18});
+    document.getElementById(id),
+      {center: {lat: latitude, lng: longitude}, zoom: 18});
 }
 
 /**

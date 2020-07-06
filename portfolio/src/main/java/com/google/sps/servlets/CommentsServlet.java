@@ -47,7 +47,6 @@ public class CommentsServlet extends HttpServlet {
     int maxComments = maxString == null ? 5 : Integer.parseInt(maxString);
     int counter = 0;
 
-    //Multimap<String, String> multimap = ArrayListMultimap.create();
     Map<String, ArrayList<String>> commentHistory = new LinkedHashMap<>();
     for (Entity entity : results.asIterable()) {
       if (counter == maxComments) {
