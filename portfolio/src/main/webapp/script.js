@@ -16,7 +16,7 @@ let factIndex = -1;
 
 function onLoad() {
     showFact();
-    getCommentHistory();
+    refreshComments(5);
 }
 
 /**
@@ -47,13 +47,6 @@ async function getMessages() {
     const messageContainer = document.getElementById('message-container');
     
     messageContainer.innerText = messages.join('\n');
-}
-
-/**
- * Fetches the current history of the comment section
- */
-function getCommentHistory() {
-  refreshComments(5);
 }
 
 /** Creates an <p> element containing text. */
