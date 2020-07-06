@@ -10,7 +10,7 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
-    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyA4O-GP5Yjrqr-e0WyewMgEDH_YALTuudg"></script>
+    <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyA4O-GP5Yjrqr-e0WyewMgEDH_YALTuudg"></script>
   </head>
   <body>
     <div id="content" class="container-fluid">
@@ -85,7 +85,7 @@
                 </div>
                 <!--Modal: Name-->
                 <a><img class="img-fluid z-depth-1 pnw-image" src="images/poopoopoint.jpg" alt="Base of Poo Poo Point hike"
-                  data-toggle="modal" data-target="#modal1" onclick="createMap('ppp-map', 47.500002, -122.021954);"></a>
+                  data-toggle="modal" data-target="#modal1" onclick="createMap('ppp-map', 'Poo Poo Point', 47.500036, -122.021761);"></a>
                 <!--Modal: Name-->
                 <div class="modal fade" id="modal2" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
                   <div class="modal-dialog modal-lg" role="document">
@@ -108,7 +108,7 @@
                 </div>
                 <!--Modal: Name-->
                 <a><img class="img-fluid z-depth-1 pnw-image" src="images/vancouver.jpeg" alt="Vancouver, CA"
-                  data-toggle="modal" data-target="#modal2" onclick="createMap('vancouver-map', 49.675528, -123.156984);"></a>
+                  data-toggle="modal" data-target="#modal2" onclick="createMap('vancouver-map', 'Sea to Sky Gondola', 49.675582, -123.156791);"></a>
                 <!--Modal: Name-->
                 <div class="modal fade" id="modal9" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
                   <div class="modal-dialog modal-lg" role="document">
@@ -131,7 +131,7 @@
                 </div>
                 <!--Modal: Name-->
                 <a><img class="img-fluid z-depth-1 pnw-image" src="images/poopoopoint2.jpg" alt="Top of Poo Poo Point"
-                  data-toggle="modal" data-target="#modal9" onclick="createMap('ppp2-map', 47.500002, -122.021954);"></a>
+                  data-toggle="modal" data-target="#modal9" onclick="createMap('ppp2-map', 'Poo Poo Point', 47.500036, -122.021761);"></a>
               </div>
               <!-- Grid column -->
               <!-- Grid column -->
@@ -158,7 +158,7 @@
                 </div>
                 <!--Modal: Name-->
                 <a><img class="img-fluid z-depth-1 pnw-image" src="images/snoqualmie.jpg" alt="Snoqualmie Falls"
-                  data-toggle="modal" data-target="#modal6" onclick="createMap('falls-map', 47.541815, -121.838294);"></a>
+                  data-toggle="modal" data-target="#modal6" onclick="createMap('falls-map', 'Snoqualmie Falls', 47.541777, -121.837489);"></a>
                 <!--Modal: Name-->
                 <div class="modal fade" id="modal5" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
                   <div class="modal-dialog modal-lg" role="document">
@@ -181,7 +181,7 @@
                 </div>
                 <!--Modal: Name-->
                 <a><img class="img-fluid z-depth-1 pnw-image" src="images/columbia.jpg" alt="Columbia River in Eastern WA"
-                  data-toggle="modal" data-target="#modal5" onclick="createMap('columbia-map', 46.947840, -119.964110);"></a>
+                  data-toggle="modal" data-target="#modal5" onclick="createMap('columbia-map', 'Columbia River Observation Point', 46.947824, -119.964201);"></a>
                 <!--Modal: Name-->
                 <div class="modal fade" id="modal8" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
                   <div class="modal-dialog modal-lg" role="document">
@@ -204,7 +204,7 @@
                 </div>
                 <!--Modal: Name-->
                 <a><img class="img-fluid z-depth-1 pnw-image" src="images/seattle.jpg" alt="Seattle Skyline"
-                  data-toggle="modal" data-target="#modal8" onclick="createMap('seattle-map', 47.622003, -122.351230);"></a>
+                  data-toggle="modal" data-target="#modal8" onclick="createMap('seattle-map', 'Space Needle', 47.620504, -122.349288);"></a>
               </div>
               <!-- Grid column -->
               <!-- Grid column -->
@@ -231,7 +231,7 @@
                 </div>
                 <!--Modal: Name-->
                 <a><img class="img-fluid z-depth-1 pnw-image" src="images/twinfalls.jpg" alt="Twin Falls"
-                  data-toggle="modal" data-target="#modal4" onclick="createMap('twin-map', 47.453169, -121.705030);"></a>
+                  data-toggle="modal" data-target="#modal4" onclick="createMap('twin-map', 'Twin Falls', 47.453169, -121.705030);"></a>
                 <!--Modal: Name-->
                 <div class="modal fade" id="modal3" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
                   <div class="modal-dialog modal-lg" role="document">
@@ -254,7 +254,7 @@
                 </div>
                 <!--Modal: Name-->
                 <a><img class="img-fluid z-depth-1 pnw-image" src="images/cherryblossoms.jpeg" alt="Cherry blossoms at UW"
-                  data-toggle="modal" data-target="#modal3" onclick="createMap('uw-map', 47.658025, -122.304313);"></a>
+                  data-toggle="modal" data-target="#modal3" onclick="createMap('uw-map', 'The Quad at UW', 47.657302, -122.307231);"></a>
                 <!--Modal: Name-->
                 <div class="modal fade" id="modal7" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
                   <div class="modal-dialog modal-lg" role="document">
@@ -276,7 +276,7 @@
                 </div>
                 <!--Modal: Name-->
                 <a><img class="img-fluid z-depth-1 pnw-image" src="images/snow.jpg" alt="Snowy street"
-                  data-toggle="modal" data-target="#modal7" onclick="createMap('street-map', 47.541761, -121.877320);"></a>
+                  data-toggle="modal" data-target="#modal7" onclick="createMap('street-map', 'Azalea Park', 47.541761, -121.877320);"></a>
               </div>
               <!-- Grid column -->
             </div>
