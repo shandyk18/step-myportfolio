@@ -74,10 +74,8 @@ function refreshComments(num) {
   fetch('/comments?max-comments=' + num).then(response => response.json()).then((comments) => {
     // Build the list of history entries.
     const history = document.getElementById('history');
-    for (const [key, value] of Object.entries(comments)) {
-      for (const comment of value) {
-        history.appendChild(createCommentElement(key, comment));
-      }
+    for (const comment of Object.entries(comments)) {
+      history.appendChild(createCommentElement(comment));  
     }
   });
 }
@@ -91,20 +89,16 @@ function deleteComments() {
 }
 
 /** Creates an <p> element containing text. */
-function createCommentElement(name, comment) {
+function createCommentElement(comment) {
   const divElement = document.createElement('div');
   const nameElement = document.createElement('p');
   const pElement = document.createElement('p');
   const imgElement = document.createElement('img');
   const brElement = document.createElement('br');
 
-  // separate the content string from text and image URL
-  const text = comment.substring(0, comment.lastIndexOf(" ") + 1);
-  const image = comment.substring(comment.lastIndexOf(" ") + 1, comment.length);
-
-  nameElement.innerText = name;
-  pElement.innerText = text;
-  imgElement.setAttribute('src', image);
+  nameElement.innerText = comment.name;
+  pElement.innerText = comment.text;
+  imgElement.setAttribute('src', comment.image);
   divElement.appendChild(nameElement);
   divElement.appendChild(pElement);
   divElement.appendChild(imgElement);
