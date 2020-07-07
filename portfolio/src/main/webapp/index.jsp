@@ -23,7 +23,7 @@
           <h1 class="navbar-brand">Shandy Kim's Portfolio</h1>
           <ul class="navbar-nav">
             <li class="nav-item">
-              <a class="nav-link" href="/index.html">Home</a>
+              <a class="nav-link" href="/index.jsp">Home</a>
             </li>
             <li class="nav-item">
               <a class="nav-link" href="/projects.html">Projects</a>
@@ -85,9 +85,9 @@
                 <label for="name">Name: </label>
                 <textarea name="name-input" id="text-name" rows="1"></textarea>
                 <textarea name="comment-input" id="text-comment" rows="4"></textarea>
-                <p>Upload an image:</p>
-                <input type="file" name="image">
                 <br>
+                <input type="file" name="image">
+                <br><br>
                 <input type="submit" class="button"/>
               </form>
             </div>

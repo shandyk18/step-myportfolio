@@ -13,10 +13,11 @@
 // limitations under the License.
 
 let factIndex = -1;
+let defaultComments = 5;
 
 function onLoad() {
     showFact();
-    refreshComments(5);
+    refreshComments(defaultComments);
 }
 
 function createMap(id, name, latitude, longitude) {
@@ -64,13 +65,6 @@ async function getMessages() {
     messageContainer.innerText = messages.join('\n');
 }
 
-/** Creates an <p> element containing text. */
-function createCommentElement(comment) {
-  const liElement = document.createElement('p');
-  liElement.innerText = comment.join('\n');
-  return liElement;
-}
-
 /**
  * Fetches the current history of the comment section given number of comments to show
  */
@@ -94,4 +88,20 @@ function refreshComments(num) {
 function deleteComments() {
     const request = new Request('/delete-data', {method: 'POST'});
     fetch(request).then(response => response.json()).then(refreshComments(0));
+}
+
+/** Creates an <p> element containing text. */
+function createCommentElement(comment) {
+  const divElement = document.createElement('div');
+  const pElement = document.createElement('p');
+  const imgElement = document.createElement('img');
+  const brElement = document.createElement('br');
+
+  pElement.innerText = comment.join('\n');
+  imgElement.setAttribute('src', 'https://i.kym-cdn.com/photos/images/newsfeed/000/954/161/b3a.jpg');
+  divElement.appendChild(pElement);
+  divElement.appendChild(imgElement);
+  divElement.appendChild(brElement);
+
+  return divElement;
 }
