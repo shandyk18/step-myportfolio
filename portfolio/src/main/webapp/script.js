@@ -76,7 +76,7 @@ function refreshComments(num) {
     const history = document.getElementById('history');
     for (const [key, value] of Object.entries(comments)) {
       for (const comment of value) {
-        history.appendChild(createCommentElement([key, comment]));
+        history.appendChild(createCommentElement(key, comment));
       }
     }
   });
@@ -91,14 +91,21 @@ function deleteComments() {
 }
 
 /** Creates an <p> element containing text. */
-function createCommentElement(comment) {
+function createCommentElement(name, comment) {
   const divElement = document.createElement('div');
+  const nameElement = document.createElement('p');
   const pElement = document.createElement('p');
   const imgElement = document.createElement('img');
   const brElement = document.createElement('br');
 
-  pElement.innerText = comment.join('\n');
-  imgElement.setAttribute('src', 'https://i.kym-cdn.com/photos/images/newsfeed/000/954/161/b3a.jpg');
+  // separate the content string from text and image URL
+  const text = comment.substring(0, comment.lastIndexOf(" ") + 1);
+  const image = comment.substring(comment.lastIndexOf(" ") + 1, comment.length);
+
+  nameElement.innerText = name;
+  pElement.innerText = text;
+  imgElement.setAttribute('src', image);
+  divElement.appendChild(nameElement);
   divElement.appendChild(pElement);
   divElement.appendChild(imgElement);
   divElement.appendChild(brElement);
