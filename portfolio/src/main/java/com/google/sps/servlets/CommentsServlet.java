@@ -65,11 +65,15 @@ public class CommentsServlet extends HttpServlet {
 
       String name = (String) entity.getProperty("name");
       String comment = (String) entity.getProperty("comment");
+      String image = (String) entity.getProperty("image");
+
+      String content = comment + " " + image;
 
       if (!commentHistory.containsKey(name)) {
           commentHistory.put(name, new ArrayList<>());
       }
-      commentHistory.get(name).add(comment);
+      
+      commentHistory.get(name).add(content);
       counter++;
     }
 
