@@ -14,6 +14,7 @@
 
 package com.google.sps.servlets;
 
+import com.google.sps.data.Comment;
 import com.google.appengine.api.blobstore.BlobInfo;
 import com.google.appengine.api.blobstore.BlobInfoFactory;
 import com.google.appengine.api.blobstore.BlobKey;
@@ -28,7 +29,6 @@ import java.net.URL;
 import java.util.List;
 import java.util.ArrayList;
 import java.util.Map;
-import java.util.LinkedHashMap;
 import com.google.gson.Gson;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -57,7 +57,7 @@ public class CommentsServlet extends HttpServlet {
     int maxComments = maxString == null ? 5 : Integer.parseInt(maxString);
     int counter = 0;
 
-    Map<String, ArrayList<String>> commentHistory = new LinkedHashMap<>();
+    List<Comment> commentHistory = new ArrayList<>();
     for (Entity entity : results.asIterable()) {
       if (counter == maxComments) {
           break;
@@ -67,13 +67,7 @@ public class CommentsServlet extends HttpServlet {
       String comment = (String) entity.getProperty("comment");
       String image = (String) entity.getProperty("image");
 
-      String content = comment + " " + image;
-
-      if (!commentHistory.containsKey(name)) {
-          commentHistory.put(name, new ArrayList<>());
-      }
-      
-      commentHistory.get(name).add(content);
+      commentHistory.add(new Comment(name, comment, image));
       counter++;
     }
 
