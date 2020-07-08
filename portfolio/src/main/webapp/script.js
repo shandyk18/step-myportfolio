@@ -96,11 +96,10 @@ function createCommentElement(comment) {
   const imgElement = document.createElement('img');
   const brElement = document.createElement('br');
 
-  console.log(comment);
-
   nameElement.innerText = comment[1].name;
   pElement.innerText = comment[1].text;
   imgElement.setAttribute('src', comment[1].image);
+
   divElement.appendChild(nameElement);
   divElement.appendChild(pElement);
   divElement.appendChild(imgElement);
