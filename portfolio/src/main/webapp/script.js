@@ -74,7 +74,7 @@ function refreshComments(num) {
   fetch('/comments?max-comments=' + num).then(response => response.json()).then((comments) => {
     // Build the list of history entries.
     const history = document.getElementById('history');
-    for (const comment of Object.entries(comments)) {
+    for (const comment of comments) {
       history.appendChild(createCommentElement(comment));  
     }
   });
@@ -91,19 +91,24 @@ function deleteComments() {
 /** Creates an <p> element containing text. */
 function createCommentElement(comment) {
   const divElement = document.createElement('div');
-  const nameElement = document.createElement('p');
+  const nameElement = document.createElement('h5');
   const pElement = document.createElement('p');
   const imgElement = document.createElement('img');
   const brElement = document.createElement('br');
+  const hrElement = document.createElement('hr');
 
-  nameElement.innerText = comment[1].name;
-  pElement.innerText = comment[1].text;
-  imgElement.setAttribute('src', comment[1].image);
+  nameElement.innerText = comment.name;
+  pElement.innerText = comment.text;
+
+  if (comment.image !== undefined) {
+    imgElement.setAttribute('src', comment.image);
+  }
 
   divElement.appendChild(nameElement);
   divElement.appendChild(pElement);
   divElement.appendChild(imgElement);
   divElement.appendChild(brElement);
+  divElement.appendChild(hrElement);
 
   return divElement;
 }
