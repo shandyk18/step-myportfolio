@@ -95,6 +95,7 @@ function createCommentElement(comment) {
   const pElement = document.createElement('p');
   const imgElement = document.createElement('img');
   const brElement = document.createElement('br');
+  const hrElement = document.createElement('hr');
 
   nameElement.innerText = comment[1].name;
   pElement.innerText = comment[1].text;
@@ -107,6 +108,7 @@ function createCommentElement(comment) {
   divElement.appendChild(pElement);
   divElement.appendChild(imgElement);
   divElement.appendChild(brElement);
+  divElement.appendChild(hrElement);
 
   return divElement;
 }
