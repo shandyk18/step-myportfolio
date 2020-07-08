@@ -23,6 +23,8 @@ import com.google.appengine.api.blobstore.BlobstoreServiceFactory;
 import com.google.appengine.api.images.ImagesService;
 import com.google.appengine.api.images.ImagesServiceFactory;
 import com.google.appengine.api.images.ServingUrlOptions;
+import com.google.appengine.api.users.UserService;
+import com.google.appengine.api.users.UserServiceFactory;
 import java.io.IOException;
 import java.net.MalformedURLException;
 import java.net.URL;
@@ -46,6 +48,7 @@ import com.google.appengine.api.datastore.Query.SortDirection;
 public class CommentsServlet extends HttpServlet {
 
   private DatastoreService datastore = DatastoreServiceFactory.getDatastoreService();
+  private UserService userService = UserServiceFactory.getUserService();
 
   @Override
   public void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException {
@@ -77,8 +80,9 @@ public class CommentsServlet extends HttpServlet {
   }
 
   @Override
-  public void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException {
+  public void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException {     
     // Get the input from the form.
+    String email = userService.getCurrentUser().getEmail();
     String newName = request.getParameter("name-input");
     String newComment = request.getParameter("comment-input");
     long timestamp = System.currentTimeMillis();
@@ -87,6 +91,7 @@ public class CommentsServlet extends HttpServlet {
 
     Entity taskEntity = new Entity("Task");
     taskEntity.setProperty("timestamp", timestamp);
+    taskEntity.setProperty("email", email);
     taskEntity.setProperty("name", newName);
     taskEntity.setProperty("comment", newComment);
     taskEntity.setProperty("image", imageUrl);
