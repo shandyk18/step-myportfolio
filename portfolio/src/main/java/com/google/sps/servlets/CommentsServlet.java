@@ -65,12 +65,13 @@ public class CommentsServlet extends HttpServlet {
       if (counter == maxComments) {
           break;
       }
-
+      
       String name = (String) entity.getProperty("name");
+      String email = (String) entity.getProperty("email");      
       String comment = (String) entity.getProperty("comment");
       String image = (String) entity.getProperty("image");
 
-      commentHistory.add(new Comment(name, comment, image));
+      commentHistory.add(new Comment(name, email, comment, image));
       counter++;
     }
 
