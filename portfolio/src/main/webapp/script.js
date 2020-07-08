@@ -18,6 +18,7 @@ let defaultComments = 5;
 function onLoad() {
     showFact();
     refreshComments(defaultComments);
+    commentLogin();
 }
 
 function createMap(id, name, latitude, longitude) {
@@ -111,4 +112,16 @@ function createCommentElement(comment) {
   divElement.appendChild(hrElement);
 
   return divElement;
+}
+
+function commentLogin() {
+  fetch('/login').then(response => response.json()).then((status) => {
+    if (status) {
+        document.getElementById('comment-form').style.display = 'block';
+        document.getElementById('login-form').style.display = 'none';
+    } else {
+        document.getElementById('comment-form').style.display = 'none';
+        document.getElementById('login-form').style.display = 'block';
+    }
+  });
 }
