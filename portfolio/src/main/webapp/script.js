@@ -98,7 +98,10 @@ function createCommentElement(comment) {
 
   nameElement.innerText = comment[1].name;
   pElement.innerText = comment[1].text;
-  imgElement.setAttribute('src', comment[1].image);
+
+  if (comment[1].image !== undefined) {
+    imgElement.setAttribute('src', comment[1].image);
+  }
 
   divElement.appendChild(nameElement);
   divElement.appendChild(pElement);
