@@ -91,7 +91,7 @@ function deleteComments() {
 /** Creates an <p> element containing text. */
 function createCommentElement(comment) {
   const divElement = document.createElement('div');
-  const nameElement = document.createElement('p');
+  const nameElement = document.createElement('h5');
   const pElement = document.createElement('p');
   const imgElement = document.createElement('img');
   const brElement = document.createElement('br');
