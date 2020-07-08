@@ -81,7 +81,7 @@
           </div>
           <div class="container">
             <div class="text">
-              <form method="POST" enctype="multipart/form-data" action="<%= uploadUrl %>">
+              <form id="comment-form" method="POST" enctype="multipart/form-data" action="<%= uploadUrl %>">
                 <label for="name">Name: </label>
                 <textarea name="name-input" id="text-name" rows="1"></textarea>
                 <textarea name="comment-input" id="text-comment" rows="4"></textarea>
@@ -90,6 +90,7 @@
                 <br><br>
                 <input type="submit" class="button"/>
               </form>
+              <p id="login-form"><a href="/_ah/login?continue=%2Findex.jsp">Login</a> to write a comment</p>
             </div>
             <br>
             <div class="text">

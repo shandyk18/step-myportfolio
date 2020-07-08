@@ -21,14 +21,12 @@ public class AuthServlet extends HttpServlet {
       String urlToRedirectToAfterUserLogsOut = "/index.jsp";
       String logoutUrl = userService.createLogoutURL(urlToRedirectToAfterUserLogsOut);
 
-      response.getWriter().println("<p>Hello " + userEmail + "!</p>");
-      response.getWriter().println("<p>Logout <a href=\"" + logoutUrl + "\">here</a>.</p>");
+      response.getWriter().println(userService.isUserLoggedIn());
     } else {
       String urlToRedirectToAfterUserLogsIn = "/index.jsp";
       String loginUrl = userService.createLoginURL(urlToRedirectToAfterUserLogsIn);
 
-      response.getWriter().println("<p>Hello stranger.</p>");
-      response.getWriter().println("<p>Login <a href=\"" + loginUrl + "\">here</a>.</p>");
+      response.getWriter().println(userService.isUserLoggedIn());
     }
   }
 }
