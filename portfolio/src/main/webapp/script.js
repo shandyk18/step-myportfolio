@@ -13,10 +13,11 @@
 // limitations under the License.
 
 let factIndex = -1;
+let defaultComments = 5;
 
 function onLoad() {
     showFact();
-    refreshComments(5);
+    refreshComments(defaultComments);
 }
 
 function createMap(id, name, latitude, longitude) {
@@ -64,13 +65,6 @@ async function getMessages() {
     messageContainer.innerText = messages.join('\n');
 }
 
-/** Creates an <p> element containing text. */
-function createCommentElement(comment) {
-  const liElement = document.createElement('p');
-  liElement.innerText = comment.join('\n');
-  return liElement;
-}
-
 /**
  * Fetches the current history of the comment section given number of comments to show
  */
@@ -80,10 +74,8 @@ function refreshComments(num) {
   fetch('/comments?max-comments=' + num).then(response => response.json()).then((comments) => {
     // Build the list of history entries.
     const history = document.getElementById('history');
-    for (const [key, value] of Object.entries(comments)) {
-      for (const comment of value) {
-        history.appendChild(createCommentElement([key, comment]));
-      }
+    for (const comment of Object.entries(comments)) {
+      history.appendChild(createCommentElement(comment));  
     }
   });
 }
@@ -94,4 +86,25 @@ function refreshComments(num) {
 function deleteComments() {
     const request = new Request('/delete-data', {method: 'POST'});
     fetch(request).then(response => response.json()).then(refreshComments(0));
+}
+
+/** Creates an <p> element containing text. */
+function createCommentElement(comment) {
+  const divElement = document.createElement('div');
+  const nameElement = document.createElement('p');
+  const pElement = document.createElement('p');
+  const imgElement = document.createElement('img');
+  const brElement = document.createElement('br');
+
+  console.log(comment);
+
+  nameElement.innerText = comment[1].name;
+  pElement.innerText = comment[1].text;
+  imgElement.setAttribute('src', comment[1].image);
+  divElement.appendChild(nameElement);
+  divElement.appendChild(pElement);
+  divElement.appendChild(imgElement);
+  divElement.appendChild(brElement);
+
+  return divElement;
 }
