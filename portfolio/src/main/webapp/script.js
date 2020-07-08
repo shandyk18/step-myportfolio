@@ -74,7 +74,7 @@ function refreshComments(num) {
   fetch('/comments?max-comments=' + num).then(response => response.json()).then((comments) => {
     // Build the list of history entries.
     const history = document.getElementById('history');
-    for (const comment of Object.entries(comments)) {
+    for (const comment of comments) {
       history.appendChild(createCommentElement(comment));  
     }
   });
@@ -97,11 +97,11 @@ function createCommentElement(comment) {
   const brElement = document.createElement('br');
   const hrElement = document.createElement('hr');
 
-  nameElement.innerText = comment[1].name;
-  pElement.innerText = comment[1].text;
+  nameElement.innerText = comment.name;
+  pElement.innerText = comment.text;
 
-  if (comment[1].image !== undefined) {
-    imgElement.setAttribute('src', comment[1].image);
+  if (comment.image !== undefined) {
+    imgElement.setAttribute('src', comment.image);
   }
 
   divElement.appendChild(nameElement);
