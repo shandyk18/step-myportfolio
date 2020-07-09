@@ -90,7 +90,7 @@
                 <br><br>
                 <input type="submit" class="button"/>
               </form>
-              <p id="login-form"><a href="/_ah/login?continue=%2Findex.jsp">Login</a> to write a comment</p>
+              <p id="login-form"><a id="login-link" href="">Login</a> to write a comment</p>
             </div>
             <br>
             <div class="text">
