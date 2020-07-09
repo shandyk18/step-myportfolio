@@ -24,14 +24,14 @@ public class SurveyServlet extends HttpServlet {
 
   @Override
   public void init() {
-      // if no entities, initialize colors
-      if (datastore.prepare(new Query("Survey")).countEntities() == 0) {
-        String[] colorArray = new String[]{"Blue", "Red", "Orange", "Yellow", "Green", "Violet"};
+    // if no entities, initialize colors
+    if (datastore.prepare(new Query("Survey")).countEntities() == 0) {
+      String[] colorArray = new String[]{"Blue", "Red", "Orange", "Yellow", "Green", "Violet"};
 
-        for (String color : colorArray) {
-            colorEntity(color);
-        }
+      for (String color : colorArray) {
+        colorEntity(color);
       }
+    }
   }
 
   @Override
