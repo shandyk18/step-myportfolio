@@ -120,6 +120,7 @@ function commentLogin() {
     if (status.status) {
         document.getElementById('comment-form').style.display = 'block';
         document.getElementById('login-form').style.display = 'none';
+        document.getElementById('login-button').innerText = 'Logout';
     } else {
         document.getElementById('comment-form').style.display = 'none';
         document.getElementById('login-form').style.display = 'block';
