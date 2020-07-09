@@ -58,8 +58,6 @@ public class SurveyServlet extends HttpServlet {
 
     for (Entity entity : results.asIterable()) {
       if (color.equals((String) entity.getProperty("color"))) {
-        System.out.println(color);
-        entity.setProperty("Key", entity.getKey());
         entity.setProperty("count", ((long) entity.getProperty("count")) + 1);
         datastore.put(entity);
         break;
