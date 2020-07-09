@@ -90,7 +90,7 @@
                 <br><br>
                 <input type="submit" class="button"/>
               </form>
-              <p id="login-form"><a id="login-link" href="">Login</a> to write a comment</p>
+              <p id="comment-login-form"><a id="comment-login-link" href="">Login</a> to write a comment</p>
             </div>
             <br>
             <div class="text">

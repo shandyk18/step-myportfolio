@@ -17,7 +17,9 @@ html, body {
 }
 
 #comment-form,
-#login-form {
+#comment-login-form,
+#color-vote-form,
+#color-login-form {
   display: none;
 }
 

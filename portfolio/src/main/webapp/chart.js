@@ -1,3 +1,21 @@
+function onLoad() {
+    console.log("HELLO");
+    voteLogin();
+}
+
+function voteLogin() {
+  fetch('/login').then(response => response.json()).then((status) => {
+    if (status.status) {
+        document.getElementById('color-vote-form').style.display = 'block';
+        document.getElementById('color-login-form').style.display = 'none';
+    } else {
+        document.getElementById('color-vote-form').style.display = 'none';
+        document.getElementById('color-login-form').style.display = 'block';
+        document.getElementById('color-login-link').href = status.link;
+    }
+  });
+}
+
 google.charts.load('current', {
     'packages': ['corechart']
 });
