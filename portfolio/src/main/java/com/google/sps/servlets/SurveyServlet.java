@@ -24,17 +24,17 @@ public class SurveyServlet extends HttpServlet {
 
   @Override
   public void init() {
-    long dsEntity = (long) datastore.prepare(new Query("Survey")).asSingleEntity().getProperty("count");
-    System.out.println("Count: " + dsEntity);
+    //long dsEntity = (long) datastore.prepare(new Query("Survey")).asSingleEntity().getProperty("count");
+    //System.out.println("Count: " + dsEntity);
 
     // if first time datastore being initialized
-    if (dsEntity == 0) {
+    //if (dsEntity == 0) {
       String[] colorArray = new String[]{"Blue", "Red", "Orange", "Yellow", "Green", "Violet"};
 
       for (String color : colorArray) {
         colorEntity(color);
       }
-    }
+    //}
   }
 
   @Override
