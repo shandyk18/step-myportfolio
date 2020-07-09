@@ -1,24 +1,27 @@
-google.charts.load('current', {'packages':['corechart']});
+google.charts.load('current', {
+    'packages': ['corechart']
+});
 google.charts.setOnLoadCallback(drawChart);
 
 /** Creates a chart and adds it to the page. */
 function drawChart() {
-  const data = new google.visualization.DataTable();
-  data.addColumn('string', 'Animal');
-  data.addColumn('number', 'Count');
-        data.addRows([
-          ['Working', 5],
-          ['Sleeping', 20],
-          ['Distracted', 75]
-        ]);
+  fetch('/survey').then(response => response.json())
+  .then((colorVotes) => {
+    const data = new google.visualization.DataTable();
+    data.addColumn('string', 'Color');
+    data.addColumn('number', 'Votes');
+    Object.keys(colorVotes).forEach((color) => {
+      data.addRow([color, colorVotes[color]]);
+    });
 
-  const options = {
-    'title': 'Productivity',
-    'width':500,
-    'height':400
-  };
+    const options = {
+      'title': 'Favorite Colors',
+      'width':600,
+      'height':500
+    };
 
-  const chart = new google.visualization.PieChart(
-      document.getElementById('chart-container'));
-  chart.draw(data, options);
+    const chart = new google.visualization.ColumnChart(
+        document.getElementById('chart-container'));
+    chart.draw(data, options);
+  });
 }
