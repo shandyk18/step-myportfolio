@@ -79,4 +79,3 @@ public class SurveyServlet extends HttpServlet {
     datastore.put(colorEntity);
   }
 }
-
