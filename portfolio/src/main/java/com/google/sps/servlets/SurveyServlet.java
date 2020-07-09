@@ -10,15 +10,43 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import com.google.appengine.api.datastore.DatastoreService;
+import com.google.appengine.api.datastore.DatastoreServiceFactory;
+import com.google.appengine.api.datastore.Entity;
+import com.google.appengine.api.datastore.PreparedQuery;
+import com.google.appengine.api.datastore.Query;
 
-/** Servlet that returns some example content. TODO: modify this file to handle comments data */
+/** Servlet that stores and displays votes for a color */
 @WebServlet("/survey")
 public class SurveyServlet extends HttpServlet {
 
-  private Map<String, Integer> colorVotes = new HashMap<>();
+  private DatastoreService datastore = DatastoreServiceFactory.getDatastoreService();
+
+  @Override
+  public void init() {
+    // if no entities, initialize colors
+    if (datastore.prepare(new Query("Survey")).countEntities() == 0) {
+      String[] colorArray = new String[]{"Blue", "Red", "Orange", "Yellow", "Green", "Violet"};
+
+      for (String color : colorArray) {
+        colorEntity(color);
+      }
+    }
+  }
 
   @Override
   public void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException {
+    Query query = new Query("Survey");
+    PreparedQuery results = datastore.prepare(query);
+    Map<String, Long> colorVotes = new HashMap<>();
+
+    for (Entity entity : results.asIterable()) {
+      String color = (String) entity.getProperty("color");
+      long count = (long) entity.getProperty("count");
+
+      colorVotes.put(color, count);
+    }
+
     response.setContentType("application/json");
     Gson gson = new Gson();
     String json = gson.toJson(colorVotes);
@@ -28,10 +56,26 @@ public class SurveyServlet extends HttpServlet {
   @Override
   public void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException {
     String color = request.getParameter("color");
-    int currentVotes = colorVotes.containsKey(color) ? colorVotes.get(color) : 0;
-    colorVotes.put(color, currentVotes + 1);
+    Query query = new Query("Survey");
+    PreparedQuery results = datastore.prepare(query);
+
+    for (Entity entity : results.asIterable()) {
+      if (color.equals((String) entity.getProperty("color"))) {
+        entity.setProperty("count", ((long) entity.getProperty("count")) + 1);
+        datastore.put(entity);
+        break;
+      }
+    }
 
     response.sendRedirect("/chart.html");
   }
-}
 
+  // initializes an Entity object for a given color
+  private void colorEntity(String color) {
+    Entity colorEntity = new Entity("Survey");
+    colorEntity.setProperty("color", color);
+    colorEntity.setProperty("count", 0);
+
+    datastore.put(colorEntity);
+  }
+}
