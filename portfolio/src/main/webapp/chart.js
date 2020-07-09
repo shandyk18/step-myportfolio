@@ -14,8 +14,8 @@ function drawChart() {
 
   const options = {
     'title': 'Productivity',
-    'width':500,
-    'height':400
+    'width': 500,
+    'height': 400
   };
 
   const chart = new google.visualization.PieChart(
