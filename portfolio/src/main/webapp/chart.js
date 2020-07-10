@@ -60,7 +60,6 @@ function drawChart() {
       'title': 'Pets',
       'width': 600,
       'height': 500,
-      //'legend': {position: 'none'}
     };
 
     const chart = new google.visualization.PieChart(
