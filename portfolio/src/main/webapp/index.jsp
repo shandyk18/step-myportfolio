@@ -35,7 +35,7 @@
               <a class="nav-link" href="/pnw.html">PNW</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="/art.html">Art</a>
+              <a class="nav-link" href="/chart.html">Polls</a>
             </li>
             <li class="nav-item">
               <a class="nav-link" href="https://www.linkedin.com/in/shandy-kim-63242b168" target="_blank">LinkedIn</a>
@@ -90,7 +90,7 @@
                 <br><br>
                 <input type="submit" class="button"/>
               </form>
-              <p id="login-form"><a id="login-link" href="">Login</a> to write a comment</p>
+              <p id="comment-login-form"><a id="comment-login-link" href="">Login</a> to write a comment</p>
             </div>
             <br>
             <div class="text">

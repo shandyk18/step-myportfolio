@@ -13,7 +13,7 @@
     <script src="https://www.gstatic.com/charts/loader.js"></script>
     <script src="chart.js"></script>
   </head>
-  <body>
+  <body onload="onLoad()">
     <div id="content" class="container-fluid">
     <div class="container-fluid p-3 my-3 bg-dark text-white">
       <nav class="navbar navbar-expand-sm bg-dark justify-content-flex-start">
@@ -32,7 +32,7 @@
             <a class="nav-link" href="/pnw.html">PNW</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="/art.html">Art</a>
+            <a class="nav-link" href="/chart.html">Polls</a>
           </li>
           <li class="nav-item">
             <a class="nav-link" href="https://www.linkedin.com/in/shandy-kim-63242b168" target="_blank">LinkedIn</a>
@@ -47,12 +47,13 @@
       <div class="row">
         <div class="col-2">
         </div>
-        <div class="col-8">
+        <div class="col-8" class="text">
             <div class="text">
-              <h3>Charts</h3>
+              <h3>Polls</h3>
             </div>
             <br>
-            <form action="/survey" method="POST">
+            <p id="polls-login-form"><a id="polls-login-link" href="">Login</a> here to vote</p>
+            <form id="color-vote-form" action="/color-survey" method="POST">
               <select name="color">
                 <option value="Red">Red</option>
                 <option value="Orange">Orange</option>
@@ -63,7 +64,19 @@
               </select>
               <button>Submit</button>
             </form>
-            <div id="chart-container"></div>
+            <div id="color-container"></div>
+            <form id="pet-vote-form" action="/pet-survey" method="POST">
+              <select name="pet">
+                <option value="Dog">Dog</option>
+                <option value="Cat">Cat</option>
+                <option value="Bird">Bird</option>
+                <option value="Fish">Fish</option>
+                <option value="Other">Other</option>
+                <option value="None">None</option>
+              </select>
+              <button>Submit</button>
+            </form>
+            <div id="pet-container"></div>
         </div>
       </div>
     </div>

@@ -118,11 +118,11 @@ function commentLogin() {
   fetch('/login').then(response => response.json()).then((status) => {
     if (status.status) {
         document.getElementById('comment-form').style.display = 'block';
-        document.getElementById('login-form').style.display = 'none';
+        document.getElementById('comment-login-form').style.display = 'none';
     } else {
         document.getElementById('comment-form').style.display = 'none';
-        document.getElementById('login-form').style.display = 'block';
-        document.getElementById('login-link').href = status.link;
+        document.getElementById('comment-login-form').style.display = 'block';
+        document.getElementById('comment-login-link').href = status.link;
     }
   });
 }
