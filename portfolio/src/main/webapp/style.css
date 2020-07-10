@@ -19,7 +19,7 @@ html, body {
 #comment-form,
 #comment-login-form,
 #color-vote-form,
-#color-login-form {
+#polls-login-form {
   display: none;
 }
 
