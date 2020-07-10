@@ -19,7 +19,8 @@ html, body {
 #comment-form,
 #comment-login-form,
 #color-vote-form,
-#color-login-form {
+#pet-vote-form,
+#polls-login-form {
   display: none;
 }
 

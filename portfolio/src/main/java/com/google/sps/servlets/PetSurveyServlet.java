@@ -19,40 +19,40 @@ import com.google.appengine.api.datastore.Query.Filter;
 import com.google.appengine.api.datastore.Query.FilterOperator;
 import com.google.appengine.api.datastore.Query.FilterPredicate;
 
-/** Servlet that stores and displays votes for a color */
-@WebServlet("/survey")
-public class SurveyServlet extends HttpServlet {
+/** Servlet that stores and displays votes for a pet */
+@WebServlet("/pet-survey")
+public class PetSurveyServlet extends HttpServlet {
 
   private DatastoreService datastore = DatastoreServiceFactory.getDatastoreService();
-  private String[] colorArray = new String[] {"Red", "Orange", "Yellow", "Green", "Blue", "Violet"};
+  private String[] petArray = new String[] {"Dog", "Cat", "Bird", "Fish", "Other", "None"};
 
   @Override
   public void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException {
-    Map<String, Integer> colorVotes = new HashMap<>();
+    Map<String, Integer> petVotes = new HashMap<>();
 
-    for (String color : colorArray) {
-      // query by current color
-      Filter colorFilter = new FilterPredicate("color", FilterOperator.EQUAL, color);
-      Query query = new Query("Survey").setFilter(colorFilter);
+    for (String pet : petArray) {
+      // query by current pet
+      Filter petFilter = new FilterPredicate("pet", FilterOperator.EQUAL, pet);
+      Query query = new Query("PetSurvey").setFilter(petFilter);
 
-      colorVotes.put(color, datastore.prepare(query).countEntities());
+      petVotes.put(pet, datastore.prepare(query).countEntities());
     }
 
     response.setContentType("application/json");
     Gson gson = new Gson();
-    String json = gson.toJson(colorVotes);
+    String json = gson.toJson(petVotes);
     response.getWriter().println(json);
   }
 
   @Override
   public void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException {
-    String color = request.getParameter("color");
-    Query query = new Query("Survey");
+    String pet = request.getParameter("pet");
+    Query query = new Query("PetSurvey");
     PreparedQuery results = datastore.prepare(query);
 
     // captures the vote by user
-    Entity newVote = new Entity("Survey");
-    newVote.setProperty("color", color);
+    Entity newVote = new Entity("PetSurvey");
+    newVote.setProperty("pet", pet);
     datastore.put(newVote);
 
     response.sendRedirect("/chart.html");
