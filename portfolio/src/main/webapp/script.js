@@ -21,7 +21,7 @@ function onLoad() {
     commentLogin();
 }
 
-function createMap(id, name, latitude, longitude) {
+function createMap(id, name, latitude, longitude, infoCaption) {
   const map = new google.maps.Map(
     document.getElementById(id),
       {center: {lat: latitude, lng: longitude}, zoom: 18, mapTypeId: 'hybrid'});
@@ -31,6 +31,12 @@ function createMap(id, name, latitude, longitude) {
     map: map,
     title: name
   });
+
+  if (infoCaption !== undefined) {
+    const infoWindow =
+        new google.maps.InfoWindow({content: infoCaption});
+    infoWindow.open(map, marker);
+  }
 
   const trafficLayer = new google.maps.TrafficLayer();
   trafficLayer.setMap(map);
