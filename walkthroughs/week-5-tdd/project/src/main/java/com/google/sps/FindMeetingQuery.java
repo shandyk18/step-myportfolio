@@ -54,27 +54,9 @@ public final class FindMeetingQuery {
         return validTimes;
     }
 
-    // get potential valid times
-    validTimes = findPotentialTimes(mergeOverlap(invalidTimes), duration);
+    invalidTimes = mergeOverlap(invalidTimes);
 
-    Iterator<TimeRange> itrValid = validTimes.iterator();
-
-    // cleans validTimes to have only completely valid times
-    while (itrValid.hasNext()) {
-        TimeRange valid = itrValid.next();
-        for (TimeRange invalid : invalidTimes) {
-            // if valid time is after an earlier event, skip ahead
-            if (invalid.end() < valid.start()) {
-                continue;
-            }
-            if (valid.overlaps(invalid)) {
-                itrValid.remove();
-                break;
-            }
-        }
-    }
-
-    return validTimes;
+    return findValidTimes(invalidTimes, duration);
   }
 
   /*
@@ -107,32 +89,35 @@ public final class FindMeetingQuery {
         mergedTimes.remove(eventTwo);
         mergedTimes.add(i, newRange);
     }
-
     return mergedTimes;
   }
 
   /*
-  * Finds any potential valid times based on a single event
+  * Find valid times from invalid events/times
   */
-  private List<TimeRange> findPotentialTimes(List<TimeRange> invalidTimes, int duration) {
+  private List<TimeRange> findValidTimes(List<TimeRange> invalidTimes, int duration) {
     List<TimeRange> validTimes = new ArrayList<>();
-    boolean first = true;  // first event of the day
+    boolean first = false;  // first event of the day
     int start = TimeRange.START_OF_DAY;  // current start of meeting
 
-    for (TimeRange invalid : invalidTimes) {
-        // if first event is at the start of the day, move start position
+    for (int i = 0; i < invalidTimes.size(); i++) {
+        TimeRange invalid = invalidTimes.get(i);
+
+        // if first event at beginning of day, move start to end of event
         if (invalid.start() == TimeRange.START_OF_DAY && first) {
             start = invalid.end();
             first = false;
+            continue;
         }
-        
-        // check if meeting possible within duration
+        // Add meeting time range from start to start of event
         if (start + duration <= invalid.start()) {
             validTimes.add(TimeRange.fromStartEnd(start, invalid.start(), false));
-            start = invalid.end();
         }
         
-        if (TimeRange.END_OF_DAY >= start + duration) {
+        start = invalid.end();  // move start to end of event for next iteration
+
+        // if last event and duration does not go past end of day
+        if (TimeRange.END_OF_DAY >= start + duration && (i == invalidTimes.size() - 1)) {
             validTimes.add(TimeRange.fromStartEnd(start, TimeRange.END_OF_DAY, true));
         }
     }
