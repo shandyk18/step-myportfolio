@@ -34,6 +34,7 @@ public final class FindMeetingQueryTest {
   // Some people that we can use in our tests.
   private static final String PERSON_A = "Person A";
   private static final String PERSON_B = "Person B";
+  private static final String PERSON_C = "Person C";
 
   // All dates are the first day of the year 2020.
   private static final int TIME_0800AM = TimeRange.getTimeInMinutes(8, 0);
@@ -44,7 +45,7 @@ public final class FindMeetingQueryTest {
   private static final int TIME_1100AM = TimeRange.getTimeInMinutes(11, 00);
   private static final int TIME_1200PM = TimeRange.getTimeInMinutes(12, 00);
   private static final int TIME_0500PM = TimeRange.getTimeInMinutes(17, 00);
-  private static final int TIME_0500PM = TimeRange.getTimeInMinutes(18, 00);
+  private static final int TIME_0600PM = TimeRange.getTimeInMinutes(18, 00);
 
   private static final int DURATION_15_MINUTES = 15;
   private static final int DURATION_30_MINUTES = 30;
@@ -290,7 +291,7 @@ public final class FindMeetingQueryTest {
             Arrays.asList(PERSON_A)),
         new Event("Event 2", TimeRange.fromStartDuration(TIME_0900AM, DURATION_30_MINUTES),
             Arrays.asList(PERSON_B)),
-        new Event("Event 3", TimeRange.fromStartDuration(TimeRange.START_OF_DAY, DURATION_WHOLE_DAY),
+        new Event("Event 3", TimeRange.fromStartEnd(TimeRange.START_OF_DAY, TimeRange.END_OF_DAY, false),
             Arrays.asList(PERSON_C)));
 
     MeetingRequest request =
@@ -352,8 +353,8 @@ public final class FindMeetingQueryTest {
         new Event("Event 1", TimeRange.fromStartEnd(TimeRange.START_OF_DAY, TIME_0830AM, false),
             Arrays.asList(PERSON_A)),
         new Event("Event 2", TimeRange.fromStartEnd(TIME_0900AM, TimeRange.END_OF_DAY, true),
-            Arrays.asList(PERSON_A)));
-        new Event("Event 3", TimeRange.fromStartEnd(TIME_0830AM, DURATION_15_MINUTES, true),
+            Arrays.asList(PERSON_A)),
+        new Event("Event 3", TimeRange.fromStartDuration(TIME_0830AM, DURATION_15_MINUTES),
             Arrays.asList(PERSON_B)));
 
     MeetingRequest request = new MeetingRequest(Arrays.asList(PERSON_A), DURATION_30_MINUTES);
@@ -369,7 +370,7 @@ public final class FindMeetingQueryTest {
 
   @Test
   public void optionalAttendeeMeeting() {
-    // Have each person have different events. We should see two options because each person has
+    // Have each person have different events. We should see three options because each person has
     // split the restricted times.
     //
     // Events  :       |--A--|     |--B--|
@@ -399,22 +400,21 @@ public final class FindMeetingQueryTest {
 
   @Test
   public void optionalAttendeeMeetingNoTime() {
-    // Have each person have different events. We should see two options because each person has
-    // split the restricted times.
-    //
+    // Have each optional attendee have different events. We should see no options because 
+    // there are no common meeting times
     // Events  : |-----A-----|    |-----A------|
     //                |-B-| |----B----|
     // Day     : |-----------------------------|
-    // Options : |--1--|     |--2--|     |--3--|
+    // Options : 
 
     Collection<Event> events = Arrays.asList(
-        new Event("Event 1", TimeRange.fromStartEnd(START_OF_DAY, TIME_1200PM, false),
+        new Event("Event 1", TimeRange.fromStartEnd(TimeRange.START_OF_DAY, TIME_1200PM, false),
             Arrays.asList(PERSON_A)),
         new Event("Event 2", TimeRange.fromStartEnd(TIME_0500PM, TimeRange.END_OF_DAY, false),
             Arrays.asList(PERSON_A)),
-        new Event("Event 3", TimeRange.fromStartDuration(TIME_0900AM, DURATION_30_MINUTES),
-            Arrays.asList(PERSON_B)));
-        new Event("Event 4", TimeRange.fromStartDuration(TIME_1100AM, TIME_0600PM, false),
+        new Event("Event 3", TimeRange.fromStartEnd(TIME_0900AM, TIME_0930AM, false),
+            Arrays.asList(PERSON_B)),
+        new Event("Event 4", TimeRange.fromStartEnd(TIME_1100AM, TIME_0600PM, false),
             Arrays.asList(PERSON_B)));
 
     MeetingRequest request =
@@ -423,10 +423,9 @@ public final class FindMeetingQueryTest {
     request.addOptionalAttendee(PERSON_A);
     request.addOptionalAttendee(PERSON_B);
 
-    Collection<TimeRange> actual = query.query(NO_EVENTS, request);
+    Collection<TimeRange> actual = query.query(events, request);
     Collection<TimeRange> expected = Arrays.asList();
 
     Assert.assertEquals(expected, actual);
   }
 }
-
