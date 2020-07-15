@@ -23,8 +23,11 @@ import java.util.Iterator;
 public final class FindMeetingQuery {
   public Collection<TimeRange> query(Collection<Event> events, MeetingRequest request) {
     List<TimeRange> validTimes = new ArrayList<>();  // return of all valid ranges
-    List<TimeRange> invalidTimes = new ArrayList<>();  // keeps track of invalid ranges
-    Collection<String> attendees = request.getAttendees();
+    List<TimeRange> invalidTimes = new ArrayList<>();  // keeps track of invalid ranges of mandatory attendees
+    List<TimeRange> allInvalidTimes = new ArrayList<>();  // keeps track of invalid ranges of all attendees
+    Collection<String> attendees = request.getAttendees();  // keeps track of mandatory attendees
+    Collection<String> allAttendees = new ArrayList<>(attendees);
+    allAttendees.addAll(request.getOptionalAttendees());
 
     int duration = (int) request.getDuration();
 
@@ -41,6 +44,11 @@ public final class FindMeetingQuery {
 
     // Add to invalid times collection
     for (Event event : events) {
+        for (String attendee : allAttendees) {
+            if(event.getAttendees().contains(attendee)) {
+                allInvalidTimes.add(event.getWhen());
+            }
+        }
         for(String attendee : attendees) {
             if(event.getAttendees().contains(attendee)) {
                 invalidTimes.add(event.getWhen());
@@ -49,14 +57,21 @@ public final class FindMeetingQuery {
     }
 
     // if no events for attendees
-    if (invalidTimes.isEmpty()) {
+    if (allInvalidTimes.isEmpty()) {
         validTimes.add(TimeRange.WHOLE_DAY);
         return validTimes;
     }
 
     invalidTimes = mergeOverlap(invalidTimes);
+    allInvalidTimes = mergeOverlap(allInvalidTimes);
+    validTimes = findValidTimes(allInvalidTimes, duration);
 
-    return findValidTimes(invalidTimes, duration);
+    // look at mandatory attendees only if no valid times
+    if (validTimes.isEmpty()) {
+        return findValidTimes(invalidTimes, duration);
+    }
+
+    return validTimes;
   }
 
   /*
@@ -71,6 +86,12 @@ public final class FindMeetingQuery {
     for (int i = 0; i < mergedTimes.size() - 1; i++) {
         TimeRange eventOne = mergedTimes.get(i);
         TimeRange eventTwo = mergedTimes.get(i+1);
+        // if any event takes up whole day, no valid times available
+        if (eventOne.duration() + 1 == TimeRange.WHOLE_DAY.duration() ||
+            eventTwo.duration() + 1 == TimeRange.WHOLE_DAY.duration()) {
+            mergedTimes.clear();
+            mergedTimes.add(TimeRange.WHOLE_DAY);
+        }
         // choose longer event in case of nesting
         if (eventOne.contains(eventTwo)) {
             mergedTimes.remove(eventTwo);
